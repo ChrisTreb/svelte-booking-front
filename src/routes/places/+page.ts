@@ -1,9 +1,10 @@
 import { type Place } from '../../interfaces/Place.js';
+import { BACKEND_URL } from '../../const/url.js';
 
 /** @type {import('./$types').PageLoad} */
 export async function load({ fetch }) {
 
-    const url = "http://192.168.1.33:8080/api/place";
+    const url = BACKEND_URL + "place";
     let places : Place[] = [];
 
 	const res = await fetch(url);

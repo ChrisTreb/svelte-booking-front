@@ -1,9 +1,10 @@
 import { type AppUser } from '../../interfaces/AppUser.js';
+import { BACKEND_URL } from '../../const/url.js';
 
 /** @type {import('./$types').PageLoad} */
 export async function load({ fetch }) {
 
-    const url = "http://192.168.1.33:8080/api/user";
+    const url = BACKEND_URL + "user";
     let appUsers : AppUser[] = [];
 
 	const res = await fetch(url);

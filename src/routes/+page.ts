@@ -1,7 +1,9 @@
+import { BACKEND_URL } from '../const/url.js';
+
 /** @type {import('./$types').PageLoad} */
 export async function load({ fetch }) {
 
-    const url = "http://192.168.1.33:8080/api/place/countries";
+    const url = BACKEND_URL + "place/countries";
     let countries : string[] = [];
 
 	const res = await fetch(url);
