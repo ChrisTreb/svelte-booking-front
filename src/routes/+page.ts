@@ -9,7 +9,5 @@ export async function load({ fetch }) {
 	const res = await fetch(url);
 	countries = await res.json();
 
-	countries.sort();
-
 	return { countries };
 }

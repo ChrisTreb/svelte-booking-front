@@ -1,6 +1,16 @@
-<script>
+<script defer>
 	/** @type {import('./$types').PageData} */
-    export let data;
+	export let data;
+	import { getCitiesByCountry } from '../dao/placeDao';
+
+	/** @type {string} */
+	let selectedCountry;
+	/** @type {string} */
+	let selectedCity;
+
+	/** @type {any} */
+	let cities = [];
+
 </script>
 
 <div id="header">
@@ -16,15 +26,34 @@
 		<div class="row">
 			<div class="col-3">
 				<label for="country" class="form-label">Country</label>
-				<select class="form-select mb-3" aria-label="Select country">
-					{#each data.countries as country }
-					<option value={country}>{country}</option>
+				<select
+					bind:value={selectedCountry}
+					on:change={() => (cities = getCitiesByCountry(selectedCountry))}
+					id="country-selector"
+					class="form-select mb-3"
+					aria-label="Select country"
+				>
+					<option value="">Choose country</option>
+					{#each data.countries as country}
+						<option value={country}>{country}</option>
 					{/each}
 				</select>
 			</div>
 			<div class="col-3">
 				<label for="city" class="form-label">City</label>
-				<input type="text" class="form-control" id="city" />
+				<select
+					value={selectedCity}
+					id="city-selector"
+					class="form-select mb-3"
+					aria-label="Select city"
+				>
+					<option value="">Choose city</option>
+					{#await getCitiesByCountry(selectedCountry) then cities}
+						{#each cities as city}
+							<option value={city}>{city}</option>
+						{/each}
+					{/await}
+				</select>
 			</div>
 			<div class="col-4 datepickers">
 				<div>
