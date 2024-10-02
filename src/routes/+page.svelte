@@ -10,14 +10,14 @@
 
 	/** @type {any} */
 	let cities = [];
-
 </script>
 
 <div id="header">
 	<div>
-		<h2>Réservez vos vacances à meilleurs prix</h2>
+		<h2>Réservez vos vacances au meilleur prix</h2>
 		<h1>Book App</h1>
-		<p>L'application de réservation la plus recommandée par les clients en 2024</p>
+		<h5>L'application de réservation la plus recommandée par les clients en 2024 *</h5>
+		<p><i>* Selon des sondages auprès de joueurs assidus de Dark Souls 3 en janvier 2024</i></p>
 	</div>
 </div>
 
@@ -72,6 +72,28 @@
 	</form>
 </div>
 
+<div class="container mt-3 mb-3">
+	<h2>Les destinations tendances</h2>
+	<div class="row">
+		{#each data.places as place}
+			<div class="col-4">
+				<div class="card">
+					<img src="{place.image}" title="place" alt="place" />
+					<div class="card-body">
+						<h5 class="card-title">{place.name}</h5>
+						<h6>{place.rating} ⭐</h6>
+						<p>Country : {place.country} - City : {place.city}</p>
+						<p class="card-text">
+							{place.description}
+						</p>
+						<a href="/" class="btn btn-primary">Go to {place.country}</a>
+					</div>
+				</div>
+			</div>
+		{/each}
+	</div>
+</div>
+
 <style>
 	#header {
 		padding: 100px;
@@ -83,6 +105,11 @@
 		background-repeat: no-repeat;
 		display: flex;
 		align-items: center;
+	}
+
+	h1 {
+		font-size: 5em;
+		font-weight: bold;
 	}
 
 	#header > div {
@@ -105,5 +132,15 @@
 	.validation-form {
 		padding: 10px;
 		display: flex;
+	}
+
+	.card {
+		height: 520px;
+	}
+
+	.card-text {
+		width: 100%;
+		height: 100px;
+		overflow: scroll;
 	}
 </style>

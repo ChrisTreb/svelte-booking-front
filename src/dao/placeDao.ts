@@ -9,8 +9,7 @@ export async function getCitiesByCountry(country : string) {
 
     if (res.ok) {
         cities = await res.json();
-
-        console.log(cities);
+        //console.log(cities);
     } else {
         console.log("Error while calling endpoint : " + url + ", status : " + res.status);
     }

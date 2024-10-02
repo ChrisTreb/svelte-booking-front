@@ -1,13 +1,35 @@
-import { BACKEND_URL } from '../const/url.js';
+import { BACKEND_URL, altPlaceImage } from '../const/url.js';
+import type { Place } from '../interfaces/Place.js';
+
+function getRandomInt(max : number) {
+	return Math.floor(Math.random() * max);
+}
 
 /** @type {import('./$types').PageLoad} */
 export async function load({ fetch }) {
 
-    const url = BACKEND_URL + "place/countries";
+	// Fetch countries list
+    const urlCountries = BACKEND_URL + "place/countries";
     let countries : string[] = [];
 
-	const res = await fetch(url);
-	countries = await res.json();
+	const resCountries = await fetch(urlCountries);
+	countries = await resCountries.json();
 
-	return { countries };
+	// Fetch some places, home page
+	const rand = getRandomInt(500);
+	const urlPlaces = BACKEND_URL + "place/id?firstId=" + rand + "&lastId=" + (rand + 2);
+	let places : Place[] = [];
+
+	const resPlaces = await fetch(urlPlaces);
+	places = await resPlaces.json();
+
+	places.forEach(place => {
+		if (place.image == "" || place.image == null) {
+			place.image = altPlaceImage;
+		} else {
+			place.image = "data:image/png;base64," +  altPlaceImage;
+		}
+	});
+
+	return { countries, places };
 }
