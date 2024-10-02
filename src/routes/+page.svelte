@@ -21,7 +21,7 @@
 	</div>
 </div>
 
-<div class="container mt-3">
+<div id="form" class="container mt-3">
 	<form>
 		<div class="row">
 			<div class="col-3">
@@ -66,7 +66,7 @@
 				</div>
 			</div>
 			<div class="col-2 validation-form">
-				<button class="btn btn-primary" type="submit">Search</button>
+				<button class="btn btn-primary submit" type="submit">Go {selectedCountry} !</button>
 			</div>
 		</div>
 	</form>
@@ -116,6 +116,17 @@
 		color: white;
 	}
 
+	#form {
+		padding: 10px;
+		background-color: rgb(240, 223, 198);
+		border-radius: 5px;
+	}
+
+	label {
+		margin-left: 5px;
+		font-weight: bold;
+	}
+
 	input {
 		width: 100%;
 	}
@@ -132,6 +143,10 @@
 	.validation-form {
 		padding: 10px;
 		display: flex;
+	}
+
+	button.submit {
+		width: 100%;
 	}
 
 	.card {
