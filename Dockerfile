@@ -5,7 +5,8 @@ FROM node:22-alpine
 WORKDIR /app
 
 # Copy package.json and package-lock.json
-COPY package*.json ./
+COPY package*.json .
+COPY *config.js .
 
 # Install dependencies
 RUN npm install
@@ -13,11 +14,10 @@ RUN npm install
 # Copy the rest of the application code
 COPY . .
 
-# Build the Svelte app
-RUN npm run build
-
 # Expose the port the app runs on
 EXPOSE 5000
 
+ENV HOST=0.0.0.0
+
 # Start the app
-CMD ["npm", "run", "start"]
+CMD [ "npm", "run", "dev", "--", "--host", "0.0.0.0"]
