@@ -17,5 +17,7 @@ COPY . .
 # Expose the port the app runs on
 EXPOSE 5000
 
+ENV HOST=0.0.0.0
+
 # Start the app
-CMD [ "npm", "run", "dev"]
+CMD [ "npm", "run", "dev", "--", "--host", "0.0.0.0"]
