@@ -15,6 +15,7 @@
             <p>Address : {place.address}</p>
             <p>Phone number : {place.phone_number}</p>
             <p>Rating : {place.rating}</p>
+            <a href="/place/{place.id}" class="btn btn-primary">Go {place.country}</a>
         </div>
     {/each}
 </div>
