@@ -25,7 +25,7 @@
 	<form>
 		<div class="row">
 			<div class="col-3">
-				<label for="country" class="form-label">Country</label>
+				<label for="country" class="form-label">Pays</label>
 				<select
 					bind:value={selectedCountry}
 					on:change={() => (cities = getCitiesByCountry(selectedCountry))}
@@ -33,21 +33,19 @@
 					class="form-select mb-3"
 					aria-label="Select country"
 				>
-					<option value="">Choose country</option>
 					{#each data.countries as country}
 						<option value={country}>{country}</option>
 					{/each}
 				</select>
 			</div>
 			<div class="col-3">
-				<label for="city" class="form-label">City</label>
+				<label for="city" class="form-label">Ville</label>
 				<select
 					value={selectedCity}
 					id="city-selector"
 					class="form-select mb-3"
 					aria-label="Select city"
 				>
-					<option value="">Choose city</option>
 					{#await getCitiesByCountry(selectedCountry) then cities}
 						{#each cities as city}
 							<option value={city}>{city}</option>
@@ -57,11 +55,11 @@
 			</div>
 			<div class="col-4 datepickers">
 				<div>
-					<label for="start-date" class="form-label">Start date</label>
+					<label for="start-date" class="form-label">Date de début</label>
 					<input type="date" class="form-control" id="start-date" />
 				</div>
 				<div>
-					<label for="end-date" class="form-label">End date</label>
+					<label for="end-date" class="form-label">Date de fin</label>
 					<input type="date" class="form-control" id="end-date" />
 				</div>
 			</div>
@@ -82,11 +80,11 @@
 					<div class="card-body">
 						<h5 class="card-title">{place.name}</h5>
 						<h6>{place.rating} ⭐</h6>
-						<p>Country : {place.country} - City : {place.city}</p>
+						<p>Pays : {place.country} - Ville : {place.city}</p>
 						<p class="card-text">
 							{place.description}
 						</p>
-						<a href="/" class="btn btn-primary">Go to {place.country}</a>
+						<a href="/place/{place.id}" class="btn btn-primary">Go {place.country}</a>
 					</div>
 				</div>
 			</div>

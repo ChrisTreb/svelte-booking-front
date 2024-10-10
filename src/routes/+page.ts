@@ -1,4 +1,4 @@
-import { BACKEND_URL, altPlaceImage } from '../const/url.js';
+import { BACKEND_URL, ALT_PLACE_IMG } from '../const/url.js';
 import type { Place } from '../interfaces/Place.js';
 
 function getRandomInt(max : number) {
@@ -25,9 +25,9 @@ export async function load({ fetch }) {
 
 	places.forEach(place => {
 		if (place.image == "" || place.image == null) {
-			place.image = altPlaceImage;
+			place.image = ALT_PLACE_IMG;
 		} else {
-			place.image = "data:image/png;base64," +  altPlaceImage;
+			place.image = "data:image/png;base64," +  place.image;
 		}
 	});
 

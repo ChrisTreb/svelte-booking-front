@@ -1,5 +1,6 @@
 import { BACKEND_URL } from "../const/url";
 
+/** Get cities corresponding to a specific country */
 export async function getCitiesByCountry(country : string) {
 
     const url : string = BACKEND_URL +  "place/country/cities/" + country;
