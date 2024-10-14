@@ -1,4 +1,4 @@
-export class Place {
+export class Room {
     id! : number;
     place_id! : number;
     created_at! : Date;
