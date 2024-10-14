@@ -1,9 +1,6 @@
 <script>
-	import { ALT_PLACE_IMG } from '../../../const/url';
-
 	/** @type {import('./$types').PageData} */
 	export let data;
-	console.log(JSON.stringify(data));
 </script>
 
 <div class="container">

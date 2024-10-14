@@ -1,5 +1,5 @@
 import { type Place } from '../../../interfaces/Place.js';
-import { ALT_PLACE_IMG, BACKEND_URL } from '../../../const/url.js';
+import { ALT_PLACES_IMG, BACKEND_URL, getRandElFromArr } from '../../../const/url.js';
 
 import { error } from '@sveltejs/kit';
 
@@ -13,7 +13,7 @@ export async function load({ params }) {
 
 	if (place) {
         if (place.image == null) {
-            place.image = ALT_PLACE_IMG;
+            place.image = getRandElFromArr(ALT_PLACES_IMG);
         }
 		return { place };
 	} else {

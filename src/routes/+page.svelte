@@ -135,11 +135,11 @@
 
 	.datepickers > div {
 		width: 48%;
-		margin: 1%;
+		margin-right: 2%;
 	}
 
 	.validation-form {
-		padding: 10px;
+		padding: 20px;
 		display: flex;
 	}
 
@@ -148,12 +148,11 @@
 	}
 
 	.card {
-		height: 520px;
+		height: 100%;
 	}
 
 	.card-text {
 		width: 100%;
-		height: 100px;
-		overflow: scroll;
+		height: auto;
 	}
 </style>
