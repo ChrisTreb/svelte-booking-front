@@ -1,5 +1,5 @@
 import { BACKEND_URL } from "../const/url";
-import type { Place } from "../interfaces/Place";
+import type { Place } from "../classes/Place";
 
 /** 
  * Get cities corresponding to a specific country 

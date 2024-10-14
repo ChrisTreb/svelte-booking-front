@@ -1,4 +1,4 @@
-import { type Place } from '../../interfaces/Place.js';
+import { type Place } from '../../classes/Place.js';
 import { BACKEND_URL } from '../../const/url.js';
 
 /** @type {import('./$types').PageLoad} */

@@ -1,4 +1,4 @@
-import { type AppUser } from '../../../../interfaces/AppUser.js';
+import { type AppUser } from '../../../../classes/AppUser.js';
 import { BACKEND_URL } from '../../../../const/url.js';
 
 /** @type {import('./$types').PageLoad} */

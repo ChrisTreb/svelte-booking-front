@@ -1,5 +1,5 @@
 import { BACKEND_URL, ALT_PLACES_IMG, getRandElFromArr } from '../const/url.js';
-import type { Place } from '../interfaces/Place.js';
+import type { Place } from '../classes/Place.js';
 
 function getRandomInt(max : number) {
 	return Math.floor(Math.random() * max);

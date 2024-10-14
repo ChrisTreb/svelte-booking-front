@@ -1,7 +1,7 @@
 <script defer>
 	/** @type {import('./$types').PageData} */
     import { getPlaceById } from '../../../../dao/placeDao';
-	import { Place } from '../../../../interfaces/Place';
+	import { Place } from '../../../../classes/Place';
 
     /** @type {number} */
     let placeId = 1;

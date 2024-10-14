@@ -1,4 +1,4 @@
-import { type Place } from '../../../interfaces/Place.js';
+import { type Place } from '../../../classes/Place.js';
 import { ALT_PLACES_IMG, BACKEND_URL, getRandElFromArr } from '../../../const/url.js';
 
 import { error } from '@sveltejs/kit';
