@@ -1,5 +1,5 @@
-import { type AppUser } from '../../interfaces/AppUser.js';
-import { BACKEND_URL } from '../../const/url.js';
+import { type AppUser } from '../../../../interfaces/AppUser.js';
+import { BACKEND_URL } from '../../../../const/url.js';
 
 /** @type {import('./$types').PageLoad} */
 export async function load({ fetch }) {
