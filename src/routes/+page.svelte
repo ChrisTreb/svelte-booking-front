@@ -46,6 +46,7 @@
 					class="form-select mb-3"
 					aria-label="Select city"
 				>
+					<option value="">No city</option>
 					{#await getCitiesByCountry(selectedCountry) then cities}
 						{#each cities as city}
 							<option value={city}>{city}</option>
