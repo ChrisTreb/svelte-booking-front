@@ -132,12 +132,18 @@
 				rows="5"
 			/>
 		</div>
-		<div class="mb-3">
-			<label for="image" class="form-label">Image string format Base 64</label>
-			<textarea bind:value={placeDisplayed.image} class="form-control" id="image" rows="5" />
+		<div class="row">
+			<div class="col-6">
+				<label for="image" class="form-label">Image string format Base 64</label>
+				<textarea bind:value={placeDisplayed.image} class="form-control" id="image" rows="10" />
+			</div>
+			<div class="col-6 preview-container">
+				<img class="img-fluid" src="data:image/jpg;base64, {placeDisplayed.image}" alt="preview" title="preview"/>
+			</div>
 		</div>
+		
 	</div>
-	<button id="submit" type="submit" class="btn btn-primary" on:click={handleClickSavePlace}
+	<button id="submit" type="submit" class="mt-3 mx-3 btn btn-primary" on:click={handleClickSavePlace}
 		>Update place</button
 	>
 </div>
@@ -157,5 +163,21 @@
 	#place-id-submit {
 		height: 40px;
 		width: 80%;
+	}
+
+	.preview-container {
+		margin-top: 33px;
+		min-height: 250px;
+		height: 100%;
+		border: 1px solid rgba(158, 158, 158, 0.37);
+		border-radius: 5px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.preview-container>img {
+		height: 100%;
+		max-width: 60%;
 	}
 </style>
