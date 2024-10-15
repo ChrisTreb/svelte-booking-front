@@ -1,6 +1,6 @@
 <script defer lang="ts">
 	/** @type {import('./$types').PageData} */
-	import { getPlaceById, savePlace } from '../../../../dao/placeDao';
+	import { getPlaceById, savePlace, deletePlace } from '../../../../dao/placeDao';
 	import { Place } from '../../../../classes/Place';
 
 	let placeDisplayed: Place;
@@ -9,8 +9,6 @@
 
 	async function handleClickGetPlace() {
 		promise = await getPlaceById(placeDisplayed.id);
-
-		console.log(promise);
 
 		placeDisplayed = new Place(
 			promise.id,
@@ -42,11 +40,15 @@
 			placeDisplayed.image
 		);
 
-		console.log('Place to save : \n' + JSON.stringify(place));
-
 		let response = await savePlace(place);
+		console.log('Save response : ' + JSON.stringify(response));
+		// TODO : Give user feedback
+	}
 
-		console.log(JSON.stringify(response));
+	async function handleClickDeletePlace() {
+		let response = await deletePlace(placeDisplayed.id);
+
+		console.log('Delete response : ' + response);
 	}
 </script>
 
@@ -138,14 +140,31 @@
 				<textarea bind:value={placeDisplayed.image} class="form-control" id="image" rows="10" />
 			</div>
 			<div class="col-6 preview-container">
-				<img class="img-fluid" src="data:image/jpg;base64, {placeDisplayed.image}" alt="preview" title="preview"/>
+				<img
+					class="img-fluid"
+					src="data:image/jpg;base64, {placeDisplayed.image}"
+					alt="preview"
+					title="preview"
+				/>
 			</div>
 		</div>
-		
 	</div>
-	<button id="submit" type="submit" class="mt-3 mx-3 btn btn-primary" on:click={handleClickSavePlace}
-		>Update place</button
-	>
+	<div class="row">
+		<button
+			id="submit"
+			type="submit"
+			class="col-2 mt-3 mx-3 btn btn-primary"
+			on:click={handleClickSavePlace}>Update place</button
+		>
+		{#if placeDisplayed.name != '' && placeDisplayed.name != undefined && placeDisplayed.name != null}
+			<button
+				id="submit"
+				type="submit"
+				class="col-2 mt-3 mx-3 btn btn-danger"
+				on:click={handleClickDeletePlace}>Delete place</button
+			>
+		{/if}
+	</div>
 </div>
 
 <style>
@@ -176,7 +195,7 @@
 		justify-content: center;
 	}
 
-	.preview-container>img {
+	.preview-container > img {
 		height: 100%;
 		max-width: 60%;
 	}

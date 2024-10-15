@@ -62,3 +62,21 @@ export async function savePlace(place: Place) {
     // Return response data  
     return resData;
 }
+
+/**
+ * Delete place by id
+ */
+export async function deletePlace(id : number) {
+
+    const url: string = BACKEND_URL + "delete-place/" + id;
+
+    // Awaiting fetch which contains method, 
+    // headers and content-type
+    const response = await fetch(url, { method: 'DELETE' });
+
+    // Awaiting response.json() 
+    const resData: string = await response.text();
+
+    // Return response data  
+    return resData;
+}
