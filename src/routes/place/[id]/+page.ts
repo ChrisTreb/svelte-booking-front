@@ -14,7 +14,11 @@ export async function load({ params }) {
 	if (place) {
         if (place.image == null) {
             place.image = getRandElFromArr(ALT_PLACES_IMG);
+        } else {
+            place.image = "data:image/png;base64, " + place.image;
         }
+
+
 		return { place };
 	} else {
         error(404, 'Not found');
