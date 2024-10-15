@@ -3,50 +3,44 @@
 	import { getPlaceById, savePlace } from '../../../../dao/placeDao';
 	import { Place } from '../../../../classes/Place';
 
-	let placeId = 1;
-	let placeCreatedAt = new Date();
-	let placeName = '';
-	let placeCountry = '';
-	let placeCity = '';
-	let placeAddress = '';
-	let placePhoneNumber = '';
-	let placeEmail = '';
-	let placeDescription = '';
-	let placeImage = '';
-	let placeRating = 1;
-
-	let placePromise;
+	let placeDisplayed: Place;
+	placeDisplayed = new Place(1, new Date(), '', '', '', '', '', '', '', 1, '');
+	let promise;
 
 	async function handleClickGetPlace() {
-		placePromise = await getPlaceById(placeId);
+		promise = await getPlaceById(placeDisplayed.id);
 
-		console.log(placePromise);
+		console.log(promise);
 
-		placeName = placePromise.name;
-		placeCreatedAt = placePromise.created_at;
-		placeCountry = placePromise.country;
-		placeCity = placePromise.city;
-		placeAddress = placePromise.address;
-		placePhoneNumber = placePromise.phone_number;
-		placeEmail = placePromise.email;
-		placeDescription = placePromise.description;
-		placeImage = placePromise.image;
-		placeRating = placePromise.rating;
+		placeDisplayed = new Place(
+			promise.id,
+			promise.created_at,
+			promise.name,
+			promise.address,
+			promise.city,
+			promise.country,
+			promise.description,
+			promise.phone_number,
+			promise.email,
+			promise.rating,
+			promise.image
+		);
 	}
 
 	async function handleClickSavePlace() {
-		let place = new Place();
-		place.id = placeId;
-		place.name = placeName;
-		place.created_at = placeCreatedAt;
-		place.address = placeAddress;
-		place.country = placeCountry;
-		place.city = placeCity;
-		place.phone_number = placePhoneNumber;
-		place.email = placeEmail;
-		place.description = placeDescription;
-		place.image = placeImage;
-		place.rating = placeRating;
+		let place = new Place(
+			placeDisplayed.id,
+			placeDisplayed.created_at,
+			placeDisplayed.name,
+			placeDisplayed.address,
+			placeDisplayed.city,
+			placeDisplayed.country,
+			placeDisplayed.description,
+			placeDisplayed.phone_number,
+			placeDisplayed.email,
+			placeDisplayed.rating,
+			placeDisplayed.image
+		);
 
 		console.log('Place to save : \n' + JSON.stringify(place));
 
@@ -62,7 +56,7 @@
 		<div class="col-2">
 			<label for="place-id" class="form-label">Select place by id</label>
 			<input
-				bind:value={placeId}
+				bind:value={placeDisplayed.id}
 				type="number"
 				min="1"
 				max="9999"
@@ -84,37 +78,42 @@
 		<div class="row">
 			<div class="col-6 mb-3">
 				<label for="name" class="form-label">Name</label>
-				<input bind:value={placeName} type="text" class="form-control" id="name" />
+				<input bind:value={placeDisplayed.name} type="text" class="form-control" id="name" />
 			</div>
 			<div class="col-6 mb-3">
 				<label for="country" class="form-label">Country</label>
-				<input bind:value={placeCountry} type="text" class="form-control" id="country" />
+				<input bind:value={placeDisplayed.country} type="text" class="form-control" id="country" />
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-6 mb-3">
 				<label for="city" class="form-label">City</label>
-				<input bind:value={placeCity} type="text" class="form-control" id="city" />
+				<input bind:value={placeDisplayed.city} type="text" class="form-control" id="city" />
 			</div>
 			<div class=" col-6 mb-3">
 				<label for="address" class="form-label">Address</label>
-				<input bind:value={placeAddress} type="text" class="form-control" id="address" />
+				<input bind:value={placeDisplayed.address} type="text" class="form-control" id="address" />
 			</div>
 		</div>
 
 		<div class="row">
 			<div class="col-4 mb-3">
 				<label for="phone" class="form-label">Phone number</label>
-				<input bind:value={placePhoneNumber} type="text" class="form-control" id="phone" />
+				<input
+					bind:value={placeDisplayed.phone_number}
+					type="text"
+					class="form-control"
+					id="phone"
+				/>
 			</div>
 			<div class=" col-4 mb-3">
 				<label for="email" class="form-label">Email</label>
-				<input bind:value={placeEmail} type="text" class="form-control" id="email" />
+				<input bind:value={placeDisplayed.email} type="text" class="form-control" id="email" />
 			</div>
 			<div class=" col-4 mb-3">
 				<label for="rating" class="form-label">Rating</label>
 				<input
-					bind:value={placeRating}
+					bind:value={placeDisplayed.rating}
 					type="number"
 					min="1"
 					max="5"
@@ -126,11 +125,16 @@
 
 		<div class="mb-3">
 			<label for="description" class="form-label">Description</label>
-			<textarea bind:value={placeDescription} class="form-control" id="description" rows="5" />
+			<textarea
+				bind:value={placeDisplayed.description}
+				class="form-control"
+				id="description"
+				rows="5"
+			/>
 		</div>
 		<div class="mb-3">
 			<label for="image" class="form-label">Image string format Base 64</label>
-			<textarea bind:value={placeImage} class="form-control" id="image" rows="5" />
+			<textarea bind:value={placeDisplayed.image} class="form-control" id="image" rows="5" />
 		</div>
 	</div>
 	<button id="submit" type="submit" class="btn btn-primary" on:click={handleClickSavePlace}
