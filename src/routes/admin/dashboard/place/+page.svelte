@@ -4,25 +4,39 @@
 	import { Place } from '../../../../classes/Place';
 
 	let placeDisplayed: Place;
-	placeDisplayed = new Place(1, new Date(), '', '', '', '', '', '', '', 1, '');
+	placeDisplayed = new Place(0, new Date(), '', '', '', '', '', '', '', 1, '');
 	let promise;
+	let messageError = '';
+	let messageSuccess = '';
 
 	async function handleClickGetPlace() {
 		promise = await getPlaceById(placeDisplayed.id);
 
-		placeDisplayed = new Place(
-			promise.id,
-			promise.created_at,
-			promise.name,
-			promise.address,
-			promise.city,
-			promise.country,
-			promise.description,
-			promise.phone_number,
-			promise.email,
-			promise.rating,
-			promise.image
-		);
+		console.log("Promise : \n" + JSON.stringify(promise));
+
+		if (Object.keys(promise).length == 0) {
+			messageSuccess = '';
+			messageError = 'Place with id : ' + placeDisplayed.id + ', not found ! Sorry';
+			placeDisplayed = new Place(0, new Date(), '', '', '', '', '', '', '', 1, '');
+		} else {
+			placeDisplayed = new Place(
+				promise.id,
+				promise.created_at,
+				promise.name,
+				promise.address,
+				promise.city,
+				promise.country,
+				promise.description,
+				promise.phone_number,
+				promise.email,
+				promise.rating,
+				promise.image
+			);
+
+			// Remove error value
+			messageError = ''
+			messageSuccess = 'Place with id : ' + placeDisplayed.id + ', found !';
+		}
 	}
 
 	async function handleClickSavePlace() {
@@ -74,6 +88,16 @@
 				on:click={handleClickGetPlace}>Get place</button
 			>
 		</div>
+		{#if messageError != ''}
+			<div class="col-4 mb-0 error-message alert alert-danger">
+				{messageError}
+			</div>
+		{/if}
+		{#if messageSuccess != ''}
+			<div class="col-4 mb-0 success-message alert alert-success">
+				{messageSuccess}
+			</div>
+		{/if}
 	</div>
 
 	<div class="container-fluid mt-5">

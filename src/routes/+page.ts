@@ -1,4 +1,4 @@
-import { BACKEND_URL, ALT_PLACES_IMG, getRandElFromArr } from '../const/url.js';
+import { BACKEND_API_URL, ALT_PLACES_IMG, getRandElFromArr } from '../const/url.js';
 import type { Place } from '../classes/Place.js';
 
 function getRandomInt(max : number) {
@@ -9,7 +9,7 @@ function getRandomInt(max : number) {
 export async function load({ fetch }) {
 
 	// Fetch countries list
-    const urlCountries = BACKEND_URL + "place/countries";
+    const urlCountries = BACKEND_API_URL + "place/countries";
     let countries : string[] = [];
 
 	const resCountries = await fetch(urlCountries);
@@ -17,7 +17,7 @@ export async function load({ fetch }) {
 
 	// Fetch some places, home page
 	const rand = getRandomInt(500);
-	const urlPlaces = BACKEND_URL + "place/id?firstId=" + rand + "&lastId=" + (rand + 2);
+	const urlPlaces = BACKEND_API_URL + "place/id?firstId=" + rand + "&lastId=" + (rand + 2);
 	let places : Place[] = [];
 
 	const resPlaces = await fetch(urlPlaces);

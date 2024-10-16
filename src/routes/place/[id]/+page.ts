@@ -1,12 +1,12 @@
 import { type Place } from '../../../classes/Place.js';
-import { ALT_PLACES_IMG, BACKEND_URL, getRandElFromArr } from '../../../const/url.js';
+import { ALT_PLACES_IMG, BACKEND_API_URL, getRandElFromArr } from '../../../const/url.js';
 
 import { error } from '@sveltejs/kit';
 
 /** @type {import('./$types').PageLoad} */
 export async function load({ params }) {
 
-    const url = BACKEND_URL + "place/" + params.id;
+    const url = BACKEND_API_URL + "place/" + params.id;
 
 	const res = await fetch(url);
 	const place : Place = await res.json();
