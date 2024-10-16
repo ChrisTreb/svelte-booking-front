@@ -212,7 +212,7 @@
 		margin-top: 33px;
 		min-height: 250px;
 		height: 100%;
-		border: 1px solid rgba(158, 158, 158, 0.37);
+		border: 1px solid rgba(158, 158, 158, 0.35);
 		border-radius: 5px;
 		display: flex;
 		align-items: center;
