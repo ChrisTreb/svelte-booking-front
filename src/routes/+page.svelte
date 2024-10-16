@@ -96,6 +96,7 @@
 <style>
 	#header {
 		padding: 100px;
+		margin-bottom: -50px;
 		width: 100vw;
 		height: 50vh;
 		background-image: url(https://images.pexels.com/photos/60217/pexels-photo-60217.jpeg);
