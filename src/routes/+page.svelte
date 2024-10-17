@@ -2,6 +2,7 @@
 	/** @type {import('./$types').PageData} */
 	export let data;
 	import { getCitiesByCountry } from '../dao/placeDao';
+	import { EMOJI_STAR } from '../const/emoji';
 
 	/** @type {string} */
 	let selectedCountry;
@@ -24,7 +25,7 @@
 <div id="form" class="container mt-3">
 	<form>
 		<div class="row">
-			<div class="col-3">
+			<div class="col-lg-3 col-md-6 col-sm-12">
 				<label for="country" class="form-label">Pays</label>
 				<select
 					bind:value={selectedCountry}
@@ -38,7 +39,7 @@
 					{/each}
 				</select>
 			</div>
-			<div class="col-3">
+			<div class="col-lg-3 col-md-6 col-sm-12">
 				<label for="city" class="form-label">Ville</label>
 				<select
 					value={selectedCity}
@@ -54,7 +55,7 @@
 					{/await}
 				</select>
 			</div>
-			<div class="col-4 datepickers">
+			<div class="col-lg-4 col-md-6 col-sm-12 datepickers">
 				<div>
 					<label for="start-date" class="form-label">Date de début</label>
 					<input type="date" class="form-control" id="start-date" />
@@ -64,7 +65,7 @@
 					<input type="date" class="form-control" id="end-date" />
 				</div>
 			</div>
-			<div class="col-2 validation-form">
+			<div class="col-lg-2 col-md-6 col-sm-12 validation-form">
 				<button class="btn btn-primary submit" type="submit">Go {selectedCountry} !</button>
 			</div>
 		</div>
@@ -75,12 +76,12 @@
 	<h2>Les destinations tendances</h2>
 	<div class="row">
 		{#each data.places as place}
-			<div class="col-4">
+			<div class="col-lg-4 col-md-6 col-sm-12">
 				<div class="card">
 					<img src="{place.image}" title="place" alt="place" />
 					<div class="card-body">
 						<h5 class="card-title">{place.name}</h5>
-						<h6>{place.rating} ⭐</h6>
+						<h6>{place.rating} {EMOJI_STAR}</h6>
 						<p>Pays : {place.country} - Ville : {place.city}</p>
 						<p class="card-text">
 							{place.description}
@@ -108,8 +109,12 @@
 	}
 
 	h1 {
-		font-size: 5em;
+		font-size: 3vw;
 		font-weight: bold;
+	}
+
+	h2 {
+		font-size: 2vw;
 	}
 
 	#header > div {

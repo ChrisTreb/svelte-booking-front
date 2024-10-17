@@ -1,4 +1,6 @@
 <script>
+	import { EMOJI_STAR } from '../../../const/emoji';
+
 	/** @type {import('./$types').PageData} */
 	export let data;
 </script>
@@ -19,6 +21,8 @@
 						<p>{data.place.city}</p>
 						<h5>Address</h5>
 						<p>{data.place.address}</p>
+						<h5>Rating</h5>
+						<p>{data.place.rating} {EMOJI_STAR}</p>
 					</div>
 				</div>
 				<h5>Phone number</h5>

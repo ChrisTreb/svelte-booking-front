@@ -1,0 +1,1 @@
+export const EMOJI_STAR = '⭐';

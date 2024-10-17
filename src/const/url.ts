@@ -23,6 +23,11 @@ export const ALT_PLACES_IMG : string[] = [
     "https://images.pexels.com/photos/3201922/pexels-photo-3201922.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
 ];
 
+/**
+ * Get random element from specific Array
+ * @param arr 
+ * @returns index
+ */
 export function getRandElFromArr(arr : string[]) {
     return arr[(Math.floor(Math.random() * arr.length))];
 }
