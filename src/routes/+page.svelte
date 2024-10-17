@@ -109,12 +109,12 @@
 	}
 
 	h1 {
-		font-size: 3vw;
+		font-size: 4vw;
 		font-weight: bold;
 	}
 
 	h2 {
-		font-size: 2vw;
+		font-size: 3vw;
 	}
 
 	#header > div {
