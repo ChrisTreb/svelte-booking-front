@@ -1,7 +1,5 @@
 <script>
-    import { onMount } from 'svelte';
     import { getCountries, getCitiesByCountry } from '../dao/placeDao';
-
 
     /** @type {any[] | null | undefined} */
     let countries = [];
