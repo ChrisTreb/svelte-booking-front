@@ -1,6 +1,21 @@
 import { BACKEND_URL, BACKEND_API_URL } from "../const/url";
 import type { Place } from "../classes/Place";
 
+/**
+ * Get all countries available in DB
+ */
+
+export async function getCountries() {
+    // Fetch countries list
+    const urlCountries = BACKEND_API_URL + "place/countries";
+    let countries : string[] = [];
+
+	const resCountries = await fetch(urlCountries);
+	countries = await resCountries.json();
+
+    return countries;
+}
+
 /** 
  * Get cities corresponding to a specific country 
 */

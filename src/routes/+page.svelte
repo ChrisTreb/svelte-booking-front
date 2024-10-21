@@ -1,16 +1,8 @@
 <script defer>
 	/** @type {import('./$types').PageData} */
 	export let data;
-	import { getCitiesByCountry } from '../dao/placeDao';
+	import PlaceFormComponent from '../components/PlaceFormComponent.svelte';
 	import { EMOJI_STAR } from '../const/emoji';
-
-	/** @type {string} */
-	let selectedCountry;
-	/** @type {string} */
-	let selectedCity;
-
-	/** @type {any} */
-	let cities = [];
 </script>
 
 <div id="header">
@@ -25,36 +17,7 @@
 <div id="form" class="container mt-3">
 	<form>
 		<div class="row">
-			<div class="col-lg-3 col-md-6 col-sm-12">
-				<label for="country" class="form-label">Pays</label>
-				<select
-					bind:value={selectedCountry}
-					on:change={() => (cities = getCitiesByCountry(selectedCountry))}
-					id="country-selector"
-					class="form-select mb-3"
-					aria-label="Select country"
-				>
-					{#each data.countries as country}
-						<option value={country}>{country}</option>
-					{/each}
-				</select>
-			</div>
-			<div class="col-lg-3 col-md-6 col-sm-12">
-				<label for="city" class="form-label">Ville</label>
-				<select
-					value={selectedCity}
-					id="city-selector"
-					class="form-select mb-3"
-					aria-label="Select city"
-				>
-					<option value="">No city</option>
-					{#await getCitiesByCountry(selectedCountry) then cities}
-						{#each cities as city}
-							<option value={city}>{city}</option>
-						{/each}
-					{/await}
-				</select>
-			</div>
+			<PlaceFormComponent/>
 			<div class="col-lg-4 col-md-6 col-sm-12 datepickers">
 				<div>
 					<label for="start-date" class="form-label">Date de début</label>
@@ -66,7 +29,7 @@
 				</div>
 			</div>
 			<div class="col-lg-2 col-md-6 col-sm-12 validation-form">
-				<button class="btn btn-primary submit" type="submit">Go {selectedCountry} !</button>
+				<button class="btn btn-primary submit" type="submit">Go !</button>
 			</div>
 		</div>
 	</form>
