@@ -6,7 +6,7 @@
 </script>
 
 <div class="container">
-	<h1>Hotels</h1>
+	<h1>Places</h1>
 
 	<form>
 		<div class="row">
@@ -30,6 +30,10 @@
 </div>
 
 <style>
+    .container {
+        margin-top: 80px;
+    }
+
 	#places-container {
 		padding: 0 10%;
 		display: flex;
