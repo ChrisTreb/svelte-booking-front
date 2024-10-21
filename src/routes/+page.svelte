@@ -15,24 +15,7 @@
 </div>
 
 <div id="form" class="container mt-3">
-	<form>
-		<div class="row">
-			<PlaceFormComponent/>
-			<div class="col-lg-4 col-md-6 col-sm-12 datepickers">
-				<div>
-					<label for="start-date" class="form-label">Date de début</label>
-					<input type="date" class="form-control" id="start-date" />
-				</div>
-				<div>
-					<label for="end-date" class="form-label">Date de fin</label>
-					<input type="date" class="form-control" id="end-date" />
-				</div>
-			</div>
-			<div class="col-lg-2 col-md-6 col-sm-12 validation-form">
-				<button class="btn btn-primary submit" type="submit">Go !</button>
-			</div>
-		</div>
-	</form>
+	<PlaceFormComponent />
 </div>
 
 <div class="container mt-3 mb-3">
@@ -41,7 +24,7 @@
 		{#each data.places as place}
 			<div class="col-lg-4 col-md-6 col-sm-12">
 				<div class="card">
-					<img src="{place.image}" title="place" alt="place" />
+					<img src={place.image} title="place" alt="place" />
 					<div class="card-body">
 						<h5 class="card-title">{place.name}</h5>
 						<h6>{place.rating} {EMOJI_STAR}</h6>
@@ -89,34 +72,7 @@
 		background-color: rgb(240, 223, 198);
 		border-radius: 5px;
 	}
-
-	label {
-		margin-left: 5px;
-		font-weight: bold;
-	}
-
-	input {
-		width: 100%;
-	}
-
-	.datepickers {
-		display: flex;
-	}
-
-	.datepickers > div {
-		width: 48%;
-		margin-right: 2%;
-	}
-
-	.validation-form {
-		padding: 20px;
-		display: flex;
-	}
-
-	button.submit {
-		width: 100%;
-	}
-
+	
 	.card {
 		height: 100%;
 	}
