@@ -1,10 +1,22 @@
-import { BACKEND_URL, BACKEND_API_URL } from "../const/url";
+import { BACKEND_URL, BACKEND_API_URL, getRandElFromArr, ALT_PLACES_IMG } from "../const/url";
 import type { Place } from "../classes/Place";
+
+/**
+ * Set place random image
+ */
+export function setRandPlaceImg(place: Place) {
+    if (place.image == null) {
+        place.image = getRandElFromArr(ALT_PLACES_IMG);
+    } else {
+        place.image = "data:image/png;base64, " + place.image;
+    }
+    return { place };
+}
+
 
 /**
  * Get all countries available in DB
  */
-
 export async function getCountries() {
     // Fetch countries list
     const urlCountries = BACKEND_API_URL + "place/countries";
@@ -29,12 +41,43 @@ export async function getCitiesByCountry(country: string) {
 
         if (res.ok) {
             cities = await res.json();
-            console.log(cities);
+            // console.log(cities);
         } else {
             console.log("Error while calling endpoint : " + url + ", status : " + res.status);
         }
     }
     return cities;
+}
+
+/** 
+ * Get available destinations from form filter
+*/
+export async function getPlaceFormResults(country : string, city : string) {
+    let places: Place[] = [];
+    let url: string = "";
+    let res: Response;
+
+    if (city != "" && city != null && city != undefined) {
+        url = BACKEND_API_URL + "place/city/" + city;
+        res = await fetch(url);
+
+        if (res.ok) {
+            places = await res.json();
+        } else {
+            console.log("Error while calling endpoint : " + url + ", status : " + res.status);
+        }
+    } else {
+        url = BACKEND_API_URL + "place/country/" + country;
+        res = await fetch(url);
+
+        if (res.ok) {
+            places = await res.json();
+        } else {
+            console.log("Error while calling endpoint : " + url + ", status : " + res.status);
+        }
+    }
+    
+    return places;
 }
 
 /**

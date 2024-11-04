@@ -1,7 +1,8 @@
 import { type Place } from '../../../classes/Place.js';
-import { ALT_PLACES_IMG, BACKEND_API_URL, getRandElFromArr } from '../../../const/url.js';
-
+import { BACKEND_API_URL } from '../../../const/url.js';
+import { setRandPlaceImg } from '../../../dao/placeDao.js';
 import { error } from '@sveltejs/kit';
+
 
 /** @type {import('./$types').PageLoad} */
 export async function load({ params }) {
@@ -12,13 +13,7 @@ export async function load({ params }) {
 	const place : Place = await res.json();
 
 	if (place) {
-        if (place.image == null) {
-            place.image = getRandElFromArr(ALT_PLACES_IMG);
-        } else {
-            place.image = "data:image/png;base64, " + place.image;
-        }
-
-
+        setRandPlaceImg(place);
 		return { place };
 	} else {
         error(404, 'Not found');

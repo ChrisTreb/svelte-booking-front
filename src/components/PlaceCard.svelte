@@ -1,9 +1,11 @@
 <script>
-    import { EMOJI_STAR } from '../const/emoji';
+	import { EMOJI_STAR } from '../const/emoji';
+	import { setRandPlaceImg } from '../dao/placeDao';
 
     /** @type { any } */
     export let place;
 
+    setRandPlaceImg(place);
 </script>
 
 <div class="col-lg-4 col-md-6 col-sm-12">

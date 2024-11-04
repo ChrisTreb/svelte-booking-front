@@ -2,9 +2,9 @@
 	import { getCountries, getCitiesByCountry } from '../dao/placeDao';
 
 	/** @type {string} */
-	let selectedCountry;
+	let selectedCountry = "";
 	/** @type {any} */
-	let selectedCity;
+	let selectedCity = "";
 	/** @type {any} */
 	let cities = [];
 </script>
@@ -61,7 +61,12 @@
 			</div>
 		</div>
 		<div class="col-lg-2 col-md-6 col-sm-12 validation-form">
-			<a href="/places?country={selectedCountry}&city={selectedCity}"><div class="btn btn-primary submit">Go !</div></a>
+			{#if selectedCountry != ""}
+				<a href="/places?country={selectedCountry}&city={selectedCity}" target="_self"><div class="btn btn-primary">Go {selectedCountry} !</div></a>
+				{:else}
+				<button disabled="{selectedCountry == ''}" class="btn btn-warning">Select Country</button>
+			{/if}
+			
 		</div>
 	</div>
 </form>
@@ -90,7 +95,18 @@
 		display: flex;
 	}
 
-	.btn-primary {
+	a {
 		width: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.btn-primary, .btn-warning {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 100%;
+		height: 50px;
 	}
 </style>
