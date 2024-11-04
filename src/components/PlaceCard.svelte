@@ -1,5 +1,4 @@
 <script>
-	import { Place } from '../classes/Place';
     import { EMOJI_STAR } from '../const/emoji';
 
     /** @type { any } */

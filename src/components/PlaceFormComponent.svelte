@@ -1,27 +1,31 @@
 <script>
 	import { getCountries, getCitiesByCountry } from '../dao/placeDao';
 
-	/** @type {any[] | null | undefined} */
-	let countries = [];
 	/** @type {string} */
-	let selectedCountry;
+	let selectedCountry = "";
 	/** @type {any} */
 	let selectedCity;
 	/** @type {any} */
 	let cities = [];
+
+	function send() {
+		console.log("Country : " + selectedCountry + " - City : " + selectedCity);
+	}
+
 </script>
 
-<form>
+<form on:submit|preventDefault={send}>
 	<div class="row">
 		<div class="col-lg-3 col-md-6 col-sm-12">
 			<label for="country" class="form-label">Pays</label>
 			<select
 				bind:value={selectedCountry}
-				on:change={() => (cities = getCitiesByCountry(selectedCountry))}
+				on:change={() => (selectedCity = "", cities = getCitiesByCountry(selectedCountry))}
 				id="country-selector"
 				class="form-select mb-3"
 				aria-label="Select country"
 			>
+				<option selected value="">-- Select a country --</option>
 				{#await getCountries() then countries}
 					{#each countries as country}
 						<option value={country}>{country}</option>
@@ -31,19 +35,20 @@
 		</div>
 		<div class="col-lg-3 col-md-6 col-sm-12">
 			<label for="city" class="form-label">Ville</label>
-			{#if selectedCountry != undefined && selectedCountry != null}
-				<select
-					value={selectedCity}
-					id="city-selector"
-					class="form-select mb-3"
-					aria-label="Select city"
-				>
-					{#await getCitiesByCountry(selectedCountry) then cities}
+			{#if selectedCountry != undefined && selectedCountry != null && selectedCountry != ""}
+				{#await cities then cities}
+					<select
+						bind:value={selectedCity}			
+						id="city-selector"
+						class="form-select mb-3"
+						aria-label="Select city"
+					>
+						<option selected value="">-- Select a city --</option>
 						{#each cities as city}
 							<option value={city}>{city}</option>
 						{/each}
-					{/await}
-				</select>
+					</select>
+				{/await }
 			{:else}
 				<div class="mt-1" style="display: flex; align-items: center;">
 					<p>Please choose country first</p>

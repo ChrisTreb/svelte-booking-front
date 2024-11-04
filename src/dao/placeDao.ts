@@ -21,18 +21,19 @@ export async function getCountries() {
 */
 export async function getCitiesByCountry(country: string) {
 
-    const url: string = BACKEND_API_URL + "place/country/cities/" + country;
     let cities: string[] = [];
 
-    const res = await fetch(url);
+    if (country != "" && country != null && country != undefined) {
+        const url: string = BACKEND_API_URL + "place/country/cities/" + country;
+        const res = await fetch(url);
 
-    if (res.ok) {
-        cities = await res.json();
-        //console.log(cities);
-    } else {
-        console.log("Error while calling endpoint : " + url + ", status : " + res.status);
+        if (res.ok) {
+            cities = await res.json();
+            console.log(cities);
+        } else {
+            console.log("Error while calling endpoint : " + url + ", status : " + res.status);
+        }
     }
-
     return cities;
 }
 
