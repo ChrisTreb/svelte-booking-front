@@ -1,5 +1,6 @@
 <script>
 	import PlaceFormComponent from '../../components/PlaceFormComponent.svelte';
+	import PlaceCard from '../../components/PlaceCard.svelte';
 
 	/** @type {import('./$types').PageData} */
 	export let data;
@@ -14,17 +15,9 @@
 		</div>
 	</form>
 
-	<div id="places-container">
+	<div id="places-container" class="row">
 		{#each data.places as place}
-			<div class="card">
-				<p class="name">{place.name}</p>
-				<p>Email : {place.email}</p>
-				<p>Country : {place.country} - City : {place.city}</p>
-				<p>Address : {place.address}</p>
-				<p>Phone number : {place.phone_number}</p>
-				<p>Rating : {place.rating}</p>
-				<a href="/place/{place.id}" class="btn btn-primary">Go {place.country}</a>
-			</div>
+			<PlaceCard {place} />
 		{/each}
 	</div>
 </div>
@@ -35,20 +28,8 @@
     }
 
 	#places-container {
-		padding: 0 10%;
+		margin-top: 20px;
 		display: flex;
 		flex-wrap: wrap;
-	}
-
-	.card {
-		font-family: Arial, Helvetica, sans-serif;
-		width: 50%;
-		padding: 15px;
-		border-radius: 5px;
-		box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
-	}
-
-	.name {
-		font-weight: bold;
 	}
 </style>

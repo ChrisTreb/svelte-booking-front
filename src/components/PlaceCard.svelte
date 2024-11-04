@@ -1,0 +1,34 @@
+<script>
+	import { Place } from '../classes/Place';
+    import { EMOJI_STAR } from '../const/emoji';
+
+    /** @type { any } */
+    export let place;
+
+</script>
+
+<div class="col-lg-4 col-md-6 col-sm-12">
+    <div class="card">
+        <img src={place.image} title="place" alt="place" />
+        <div class="card-body">
+            <h5 class="card-title">{place.name}</h5>
+            <h6>{place.rating} {EMOJI_STAR}</h6>
+            <p>Pays : {place.country} - Ville : {place.city}</p>
+            <p class="card-text">
+                {place.description}
+            </p>
+            <a href="/place/{place.id}" class="btn btn-primary">Go {place.country}</a>
+        </div>
+    </div>
+</div>
+
+<style>
+    .card {
+		height: 100%;
+	}
+
+	.card-text {
+		width: 100%;
+		height: auto;
+	}
+</style>
