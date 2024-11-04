@@ -2,19 +2,14 @@
 	import { getCountries, getCitiesByCountry } from '../dao/placeDao';
 
 	/** @type {string} */
-	let selectedCountry = "";
+	let selectedCountry;
 	/** @type {any} */
 	let selectedCity;
 	/** @type {any} */
 	let cities = [];
-
-	function send() {
-		console.log("Country : " + selectedCountry + " - City : " + selectedCity);
-	}
-
 </script>
 
-<form on:submit|preventDefault={send}>
+<form>
 	<div class="row">
 		<div class="col-lg-3 col-md-6 col-sm-12">
 			<label for="country" class="form-label">Pays</label>
@@ -66,7 +61,7 @@
 			</div>
 		</div>
 		<div class="col-lg-2 col-md-6 col-sm-12 validation-form">
-			<button class="btn btn-primary submit" type="submit">Go !</button>
+			<a href="/places?country={selectedCountry}&city={selectedCity}"><div class="btn btn-primary submit">Go !</div></a>
 		</div>
 	</div>
 </form>
@@ -95,7 +90,7 @@
 		display: flex;
 	}
 
-	button.submit {
+	.btn-primary {
 		width: 100%;
 	}
 </style>
