@@ -7,7 +7,7 @@
 
 <div class="container">
 	<div class="main-row row">
-		<div class="col-9">
+		<div class="col-lg-8 col-md-12">
 			<div class="place-content">
 				<h1>{data.place.name}</h1>
 				<div class="row mb-5">
@@ -34,7 +34,7 @@
 			</div>
 		</div>
 
-		<div class="col-3">
+		<div class="col-lg-4 col-md-12">
 			<div class="place-rooms">
 
 			</div>

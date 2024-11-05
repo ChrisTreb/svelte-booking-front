@@ -12,7 +12,7 @@
 	async function handleClickGetPlace() {
 		promise = await getPlaceById(placeDisplayed.id);
 
-		console.log("Promise : \n" + JSON.stringify(promise));
+		console.log('Promise : \n' + JSON.stringify(promise));
 
 		if (Object.keys(promise).length == 0) {
 			messageSuccess = '';
@@ -34,7 +34,7 @@
 			);
 
 			// Remove error value
-			messageError = ''
+			messageError = '';
 			messageSuccess = 'Place with id : ' + placeDisplayed.id + ', found !';
 		}
 	}
@@ -69,7 +69,7 @@
 <div class="container">
 	<h1>Modify places</h1>
 	<div class="row">
-		<div class="col-2">
+		<div class="col-lg-2 col-md-6 mb-2">
 			<label for="place-id" class="form-label">Select place by id</label>
 			<input
 				bind:value={placeDisplayed.id}
@@ -80,7 +80,7 @@
 				id="place-id"
 			/>
 		</div>
-		<div class="col-2 place-id-form-button">
+		<div class="col-lg-2 col-md-6 place-id-form-button mb-2">
 			<button
 				id="place-id-submit"
 				type="submit"
@@ -89,12 +89,12 @@
 			>
 		</div>
 		{#if messageError != ''}
-			<div class="col-4 mb-0 error-message alert alert-danger">
+			<div class="col-lg-8 col-md-12 mb-0 error-message alert alert-danger mt-3">
 				{messageError}
 			</div>
 		{/if}
 		{#if messageSuccess != ''}
-			<div class="col-4 mb-0 success-message alert alert-success">
+			<div class="col-lg-8 col-md-12 mb-0 success-message alert alert-success mt-3">
 				{messageSuccess}
 			</div>
 		{/if}
@@ -102,28 +102,28 @@
 
 	<div class="container-fluid mt-5">
 		<div class="row">
-			<div class="col-6 mb-3">
+			<div class="col-lg-6 col-sm-12 mb-3">
 				<label for="name" class="form-label">Name</label>
 				<input bind:value={placeDisplayed.name} type="text" class="form-control" id="name" />
 			</div>
-			<div class="col-6 mb-3">
+			<div class="col-lg-6 col-sm-12 mb-3">
 				<label for="country" class="form-label">Country</label>
 				<input bind:value={placeDisplayed.country} type="text" class="form-control" id="country" />
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-6 mb-3">
+			<div class="col-lg-6 col-sm-12 mb-3">
 				<label for="city" class="form-label">City</label>
 				<input bind:value={placeDisplayed.city} type="text" class="form-control" id="city" />
 			</div>
-			<div class=" col-6 mb-3">
+			<div class="col-lg-6 col-sm-12 mb-3">
 				<label for="address" class="form-label">Address</label>
 				<input bind:value={placeDisplayed.address} type="text" class="form-control" id="address" />
 			</div>
 		</div>
 
 		<div class="row">
-			<div class="col-4 mb-3">
+			<div class="col-lg-4 col-sm-12 mb-3">
 				<label for="phone" class="form-label">Phone number</label>
 				<input
 					bind:value={placeDisplayed.phone_number}
@@ -132,11 +132,11 @@
 					id="phone"
 				/>
 			</div>
-			<div class=" col-4 mb-3">
+			<div class="col-lg-4 col-sm-12 mb-3">
 				<label for="email" class="form-label">Email</label>
 				<input bind:value={placeDisplayed.email} type="text" class="form-control" id="email" />
 			</div>
-			<div class=" col-4 mb-3">
+			<div class="col-lg-4 col-sm-12 mb-3">
 				<label for="rating" class="form-label">Rating</label>
 				<input
 					bind:value={placeDisplayed.rating}
@@ -148,22 +148,23 @@
 				/>
 			</div>
 		</div>
-
-		<div class="mb-3">
-			<label for="description" class="form-label">Description</label>
-			<textarea
-				bind:value={placeDisplayed.description}
-				class="form-control"
-				id="description"
-				rows="5"
-			/>
+		<div class="row">
+			<div class="col-md-12 mb-3">
+				<label for="description" class="form-label">Description</label>
+				<textarea
+					bind:value={placeDisplayed.description}
+					class="form-control"
+					id="description"
+					rows="5"
+				/>
+			</div>
 		</div>
 		<div class="row">
-			<div class="col-6">
+			<div class="col-lg-6 col-md-12">
 				<label for="image" class="form-label">Image string format Base 64</label>
 				<textarea bind:value={placeDisplayed.image} class="form-control" id="image" rows="10" />
 			</div>
-			<div class="col-6 preview-container">
+			<div class="col-lg-6 col-md-12 preview-container">
 				<img
 					class="img-fluid"
 					src="data:image/jpg;base64, {placeDisplayed.image}"
@@ -172,22 +173,22 @@
 				/>
 			</div>
 		</div>
-	</div>
-	<div class="row">
-		<button
-			id="submit"
-			type="submit"
-			class="col-2 mt-3 mx-3 btn btn-primary"
-			on:click={handleClickSavePlace}>Update place</button
-		>
-		{#if placeDisplayed.name != '' && placeDisplayed.name != undefined && placeDisplayed.name != null}
+		<div class="row form-buttons">
 			<button
 				id="submit"
 				type="submit"
-				class="col-2 mt-3 mx-3 btn btn-danger"
-				on:click={handleClickDeletePlace}>Delete place</button
+				class="col-lg-2 col-md-6 mt-3 btn btn-primary"
+				on:click={handleClickSavePlace}>Update place</button
 			>
-		{/if}
+			{#if placeDisplayed.name != '' && placeDisplayed.name != undefined && placeDisplayed.name != null}
+				<button
+					id="submit"
+					type="submit"
+					class="col-lg-2 col-md-6 mt-3 btn btn-danger"
+					on:click={handleClickDeletePlace}>Delete place</button
+				>
+			{/if}
+		</div>
 	</div>
 </div>
 
@@ -205,7 +206,7 @@
 
 	#place-id-submit {
 		height: 40px;
-		width: 80%;
+		width: 100%;
 	}
 
 	.preview-container {
@@ -222,5 +223,11 @@
 	.preview-container > img {
 		height: 100%;
 		max-width: 60%;
+	}
+
+	.form-buttons {
+		display: flex;
+		align-items: center;
+		justify-content: space-evenly;
 	}
 </style>
