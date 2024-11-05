@@ -67,7 +67,7 @@
 </script>
 
 <div class="container">
-	<h1>Modify places</h1>
+	<h1>Place editor</h1>
 	<div class="row">
 		<div class="col-lg-2 col-md-6 mb-2">
 			<label for="place-id" class="form-label">Select place by id</label>
