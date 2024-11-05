@@ -45,6 +45,11 @@
 					<PlaceCard {place} />
 				{/each}
 			{/await}
+			{:else}
+			<div class="loading-container">
+				<h3>LOADING</h3>
+				<p>Looking for results !</p>
+			</div>
 		{/if}
 	</div>
 </div>
@@ -52,11 +57,22 @@
 <style>
 	.container {
 		margin-top: 80px;
+		width: 100vw;
+		min-height: 100vh;
 	}
 
 	#places-container {
+		min-height: 50vh;
 		margin-top: 20px;
 		display: flex;
+		justify-content: space-evenly;
 		flex-wrap: wrap;
+	}
+
+	.loading-container {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-direction: column;
 	}
 </style>
