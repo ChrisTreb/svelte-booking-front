@@ -1,7 +1,7 @@
 import { Link } from "../classes/Link";
 
-export const BACKEND_URL: string = "http://192.168.1.33:8080/";
-export const BACKEND_API_URL: string = "http://192.168.1.33:8080/api/";
+export const BACKEND_URL: string = "http://ctrl-rasp.zapto.org:8080/";
+export const BACKEND_API_URL: string = BACKEND_URL + "api/";
 
 export const ALT_PLACES_IMG: string[] = [
     "https://images.pexels.com/photos/2507010/pexels-photo-2507010.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
