@@ -1,16 +1,20 @@
 <script>
 	import { EMOJI_STAR } from '../const/emoji';
 	import { setRandPlaceImg } from '../dao/placeDao';
+	import ButtonPlaceEdit from './ButtonPlaceEdit.svelte';
 
     /** @type { any } */
     export let place;
-
+    /** @type {number} */
+    export let placeId = place.id
+    
     setRandPlaceImg(place);
 </script>
 
 <div class="col-lg-4 col-md-6 col-sm-12">
     <div class="card">
-        <img src={place.image} title="place" alt="place" />
+        <ButtonPlaceEdit {placeId} />
+        <img src={place.image} title="place" alt="place"/>
         <div class="card-body">
             <h5 class="card-title">{place.name}</h5>
             <h6>{place.rating} {EMOJI_STAR}</h6>

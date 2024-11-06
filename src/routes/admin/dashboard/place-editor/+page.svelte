@@ -1,24 +1,39 @@
 <script defer lang="ts">
+	import { onMount } from 'svelte';
+
 	/** @type {import('./$types').PageData} */
 	import { getPlaceById, savePlace, deletePlace } from '../../../../dao/placeDao';
 	import { Place } from '../../../../classes/Place';
 	import Breadcrumb from '../../../../components/Breadcrumb.svelte';
+	
 
 	let placeDisplayed: Place;
-	placeDisplayed = new Place(0, new Date(), '', '', '', '', '', '', '', 1, '');
+	placeDisplayed = new Place(0, new Date(), "", "", "", "", "", "", "", 1, "");
 	let promise;
-	let messageError = '';
-	let messageSuccess = '';
+	let messageError = "";
+	let messageSuccess = "";
+	let placeId = "";
 
-	async function handleClickGetPlace() {
+	onMount(() => {
+		// Get query string from URL
+		const urlParams = new URLSearchParams(window.location.search);
+		placeId = urlParams.get('id') || "";
+		// Load place from url param id if exists
+		if (placeId != "") {
+			placeDisplayed.id = parseInt(placeId);
+			getPlace();
+		}
+	});
+
+	async function getPlace() {
 		promise = await getPlaceById(placeDisplayed.id);
 
 		console.log('Promise : \n' + JSON.stringify(promise));
 
 		if (Object.keys(promise).length == 0) {
-			messageSuccess = '';
+			messageSuccess = "";
 			messageError = 'Place with id : ' + placeDisplayed.id + ', not found ! Sorry';
-			placeDisplayed = new Place(0, new Date(), '', '', '', '', '', '', '', 1, '');
+			placeDisplayed = new Place(0, new Date(), "", "", "", "", "", "", "", 1, "");
 		} else {
 			placeDisplayed = new Place(
 				promise.id,
@@ -35,8 +50,8 @@
 			);
 
 			// Remove error value
-			messageError = '';
-			messageSuccess = 'Place with id : ' + placeDisplayed.id + ', found !';
+			messageError = "";
+			messageSuccess = "Place with id : " + placeDisplayed.id + ", found !";
 		}
 	}
 
@@ -86,15 +101,15 @@
 				id="place-id-submit"
 				type="submit"
 				class="col-1 btn btn-primary"
-				on:click={handleClickGetPlace}>Get place</button
+				on:click={getPlace}>Get place</button
 			>
 		</div>
-		{#if messageError != ''}
+		{#if messageError != ""}
 			<div class="col-lg-8 col-md-12 mb-0 error-message alert alert-danger mt-3">
 				{messageError}
 			</div>
 		{/if}
-		{#if messageSuccess != ''}
+		{#if messageSuccess != ""}
 			<div class="col-lg-8 col-md-12 mb-0 success-message alert alert-success mt-3">
 				{messageSuccess}
 			</div>
@@ -181,7 +196,7 @@
 				class="col-lg-2 col-md-6 mt-3 btn btn-primary"
 				on:click={handleClickSavePlace}>Update place</button
 			>
-			{#if placeDisplayed.name != '' && placeDisplayed.name != undefined && placeDisplayed.name != null}
+			{#if placeDisplayed.name != "" && placeDisplayed.name != undefined && placeDisplayed.name != null}
 				<button
 					id="submit"
 					type="submit"
