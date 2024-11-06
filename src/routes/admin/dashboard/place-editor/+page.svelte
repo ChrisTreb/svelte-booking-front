@@ -87,7 +87,7 @@
 			let response = await savePlace(place);
 			console.log('Save response : ' + JSON.stringify(response));
 			messageError = '';
-			if (modeEditor == "Update") {
+			if (modeEditor == 'Update') {
 				messageSuccess = 'Place ' + placeDisplayed.id + ' successfully updated !';
 			} else {
 				messageSuccess = 'Place successfully created !';
@@ -113,26 +113,28 @@
 	<div class="row">
 		<div class="col-lg-2 col-md-6 mb-2">
 			<label for="editor-mode" class="form-label">Select editor mode</label>
-			<select class="form-select" aria-label="editor mode" bind:value={modeEditor}>
+			<select class="form-select" aria-label="editor mode" bind:value={modeEditor} on:change={() => {messageError = ""; messageSuccess = ""}}>
 				<option selected value="Update">Update</option>
 				<option value="Create">Create</option>
 			</select>
 		</div>
-		{#if modeEditor == "Update"}
-		<div class="col-lg-2 col-md-6 mb-2">
-			<label for="place-id" class="form-label">Select place by id</label>
-			<input
-				bind:value={placeDisplayed.id}
-				type="number"
-				min="1"
-				max="9999"
-				class="form-control"
-				id="place-id"
-			/>
-		</div>
-		<div class="col-lg-2 col-md-6 place-id-form-button mb-2">
-			<button id="place-id-submit" type="submit" class="col-1 btn btn-primary" on:click={getPlace}>Get place</button>
-		</div>
+		{#if modeEditor == 'Update'}
+			<div class="col-lg-2 col-md-6 mb-2">
+				<label for="place-id" class="form-label">Select place by id</label>
+				<input
+					bind:value={placeDisplayed.id}
+					type="number"
+					min="1"
+					max="9999"
+					class="form-control"
+					id="place-id"
+				/>
+			</div>
+			<div class="col-lg-2 col-md-6 place-id-form-button mb-2">
+				<button id="place-id-submit" type="submit" class="col-1 btn btn-primary" on:click={getPlace}
+					>Get place</button
+				>
+			</div>
 		{/if}
 		{#if messageError != ''}
 			<div class="col-lg-6 col-md-12 mb-0 error-message alert alert-danger mt-3">
@@ -207,16 +209,20 @@
 		</div>
 		<div class="row">
 			<div class="col-lg-6 col-md-12">
-				<label for="image" class="form-label">Image string format Base 64</label>
+				<label for="image" class="form-label">Image url or string format Base 64</label>
 				<textarea bind:value={placeDisplayed.image} class="form-control" id="image" rows="10" />
 			</div>
 			<div class="col-lg-6 col-md-12 preview-container">
-				<img
-					class="img-fluid"
-					src="data:image/jpg;base64, {placeDisplayed.image}"
-					alt="preview"
-					title="preview"
-				/>
+				{#if !/(http(s?)):\/\//i.test(placeDisplayed.image)}
+					<img
+						class="img-fluid"
+						src="data:image/jpg;base64, {placeDisplayed.image}"
+						alt="preview"
+						title="preview"
+					/>
+				{:else}
+					<img class="img-fluid" src={placeDisplayed.image} alt="preview" title="preview" />
+				{/if}
 			</div>
 		</div>
 		<div class="row form-buttons">

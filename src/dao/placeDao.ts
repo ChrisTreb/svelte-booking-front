@@ -7,7 +7,7 @@ import type { Place } from "../classes/Place";
 export function setRandPlaceImg(place: Place) {
     if (place.image == null) {
         place.image = getRandElFromArr(ALT_PLACES_IMG);
-    } else {
+    } else if (!/(http(s?)):\/\//i.test(place.image)) {
         place.image = "data:image/png;base64, " + place.image;
     }
     return { place };
