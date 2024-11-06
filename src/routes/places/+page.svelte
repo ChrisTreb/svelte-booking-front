@@ -32,7 +32,7 @@
 
 <div class="container">
 	<Breadcrumb/>
-	<p>{#if country != ""} Query : {country} {/if} {#if city != ""}- {city} {/if}</p>
+	<p class="query"><b>{#if country != ""}Results for country : {country} {/if} {#if city != ""}, city : {city} {/if}</b></p>
 
 	<form>
 		<div class="row">
@@ -76,5 +76,12 @@
 		align-items: center;
 		justify-content: center;
 		flex-direction: column;
+	}
+
+	.query {
+		color: white;
+		background-color: rgb(70, 70, 70);
+		padding: 10px 15px;
+		border-radius: 5px;
 	}
 </style>
