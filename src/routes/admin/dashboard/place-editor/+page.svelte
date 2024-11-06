@@ -103,9 +103,18 @@
 	 */
 	async function handleClickDeletePlace() {
 		let response = await deletePlace(placeDisplayed.id);
-
 		console.log('Delete response : ' + response);
 	}
+
+	/**
+	 * Reset form
+	*/
+	function resetForm() {
+		placeDisplayed = new Place(0, new Date(), '', '', '', '', '', '', '', 1, '');
+		messageError = "";
+		messageSuccess = "Empty form !"
+	}
+
 </script>
 
 <div class="container">
@@ -137,15 +146,20 @@
 			</div>
 		{/if}
 		{#if messageError != ''}
-			<div class="col-lg-6 col-md-12 mb-0 error-message alert alert-danger mt-3">
-				{messageError}
+			<div class="col-lg-4 col-md-12 mb-0 error-message alert alert-danger mt-3 alert-dismissible fade show">
+				<p>{messageError}</p>
+				<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 			</div>
 		{/if}
 		{#if messageSuccess != ''}
-			<div class="col-lg-6 col-md-12 mb-0 success-message alert alert-success mt-3">
-				{messageSuccess}
+			<div class="col-lg-4 col-md-12 mb-0 success-message alert alert-success mt-3 alert-dismissible fade show">
+				<p>{messageSuccess}</p>
+				<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 			</div>
 		{/if}
+		<div id="reset-form" class="col-lg-2 col-md-6 mb-2">
+			<button class="btn btn-warning" on:click={resetForm}>Reset</button>
+		</div>
 	</div>
 
 	<div id="place-form" class="container-fluid mt-2">
@@ -207,7 +221,7 @@
 				/>
 			</div>
 		</div>
-		<div class="row">
+		<div id="controls" class="row">
 			<div class="col-lg-6 col-md-12">
 				<label for="image" class="form-label">Image url or string format Base 64</label>
 				<textarea bind:value={placeDisplayed.image} class="form-control" id="image" rows="10" />
@@ -277,6 +291,30 @@
 	.container {
 		min-height: calc(100vh - 100px);
 		margin-top: 80px;
+	}
+
+	#controls {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
+
+	#reset-form {
+		display: flex;
+		flex-direction: column;
+		justify-content: end;
+	}
+
+	.alert {
+		z-index: 10;
+		position: fixed;
+		left: 50%;
+		bottom: 50%;
+		transform: translate(-50%, 0);
+	}
+
+	.alert > p {
+		margin: 0;
 	}
 
 	.place-id-form-button {
