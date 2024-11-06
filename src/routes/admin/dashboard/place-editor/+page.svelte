@@ -19,7 +19,7 @@
 
 	onMount(() => {
 		// Set editor to update mode
-		modeEditor = 'Update';
+		modeEditor = 'Create';
 
 		// Get Modal element
 		modal = document.getElementById('popup');
