@@ -72,10 +72,15 @@ export function getUrlParts() {
             }
         }
     }
-    console.log(links);
     return links;
 }
 
+/**
+ * Clean params from url 
+ * Breadcrum use
+ * @param part 
+ * @returns string
+ */
 function removeParams (part: string ) {
     let tempArr: string[] = [];
     tempArr = part.split("?");

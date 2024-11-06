@@ -139,3 +139,36 @@ export async function deletePlace(id : number) {
     // Return response data  
     return resData;
 }
+
+/**
+ * Validate place data
+ */
+export function validatePlace(place: Place) {
+    let validation: boolean = true;
+
+    if (place.name == null || place.name == undefined || place.name == "") {
+        validation = false;
+    }
+    if (place.address == null || place.address == undefined || place.address == "") {
+        validation = false;
+    }
+    if (place.city == null || place.city == undefined || place.city == "") {
+        validation = false;
+    }
+    if (place.country == null || place.country == undefined || place.country == "") {
+        validation = false;
+    }
+    if (place.description == null || place.description == undefined || place.description == "") {
+        validation = false;
+    }
+    if (place.description == null || place.description == undefined || place.description == "") {
+        validation = false;
+    }
+    if (place.phone_number == null || place.phone_number == undefined || place.phone_number == "") {
+        validation = false;
+    }
+    if (place.email == null || place.email == undefined || place.email == "") {
+        validation = false;
+    }
+    return validation;
+}
