@@ -1,9 +1,11 @@
 <script>
+	import { onMount } from 'svelte';
+
 	import PlaceFormComponent from '../../components/PlaceFormComponent.svelte';
 	import PlaceCard from '../../components/PlaceCard.svelte';
 	import { getPlaceFormResults } from '../../dao/placeDao';
-	import { onMount } from 'svelte';
-
+	import Breadcrumb from '../../components/Breadcrumb.svelte';
+	
 	/** @type {import('./$types').PageData} */
 	export let data;
 
@@ -29,8 +31,8 @@
 </script>
 
 <div class="container">
-	<h1>Places</h1>
-	<p>Query : {country} - {city}</p>
+	<Breadcrumb/>
+	<p>{#if country != ""} Query : {country} {/if} {#if city != ""}- {city} {/if}</p>
 
 	<form>
 		<div class="row">

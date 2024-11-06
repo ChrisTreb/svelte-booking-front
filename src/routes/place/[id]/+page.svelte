@@ -1,11 +1,13 @@
 <script>
-	import { EMOJI_STAR } from '../../../const/emoji';
+	import Breadcrumb from '../../../components/Breadcrumb.svelte';
+import { EMOJI_STAR } from '../../../const/emoji';
 
 	/** @type {import('./$types').PageData} */
 	export let data;
 </script>
 
 <div class="container">
+	<Breadcrumb />
 	<div class="main-row row">
 		<div class="col-lg-8 col-md-12">
 			<div class="place-content">
@@ -48,7 +50,7 @@
 	}
 
 	.container {
-		margin-top: 100px;
+		margin-top: 80px;
 		min-height: 90vh;
 	}
 

@@ -1,10 +1,12 @@
 <script>
+	import Breadcrumb from '../../../../components/Breadcrumb.svelte';
+
 	/** @type {import('./$types').PageData} */
 	export let data;
 </script>
 
 <div id="users-container">
-	<h1>Users</h1>
+    <Breadcrumb />
 	<div class="row">
 		{#each data.appUsers as user}
 			<div class="card col-lg-4 col-md-6 col-sm-12">
@@ -42,7 +44,7 @@
 
 <style>
 	#users-container {
-		margin-top: 70px;
+		margin-top: 80px;
 		padding: 0 10%;
 		display: flex;
 		flex-wrap: wrap;

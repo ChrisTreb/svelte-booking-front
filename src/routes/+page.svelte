@@ -1,7 +1,7 @@
 <script defer>
 	import PlaceFormComponent from '../components/PlaceFormComponent.svelte';
 	import PlaceCard from '../components/PlaceCard.svelte';
-
+		
 	/** @type {import('./$types').PageData} */
 	export let data;
 </script>

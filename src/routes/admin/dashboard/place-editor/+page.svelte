@@ -2,6 +2,7 @@
 	/** @type {import('./$types').PageData} */
 	import { getPlaceById, savePlace, deletePlace } from '../../../../dao/placeDao';
 	import { Place } from '../../../../classes/Place';
+	import Breadcrumb from '../../../../components/Breadcrumb.svelte';
 
 	let placeDisplayed: Place;
 	placeDisplayed = new Place(0, new Date(), '', '', '', '', '', '', '', 1, '');
@@ -67,7 +68,7 @@
 </script>
 
 <div class="container">
-	<h1>Place editor</h1>
+	<Breadcrumb />
 	<div class="row">
 		<div class="col-lg-2 col-md-6 mb-2">
 			<label for="place-id" class="form-label">Select place by id</label>
@@ -195,7 +196,7 @@
 <style>
 	.container {
 		min-height: calc(100vh - 100px);
-		margin-top: 100px;
+		margin-top: 80px;
 	}
 
 	.place-id-form-button {
