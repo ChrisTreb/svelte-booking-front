@@ -5,7 +5,7 @@
 	import PlaceCard from '../../components/PlaceCard.svelte';
 	import { getPlaceFormResults } from '../../dao/placeDao';
 	import Breadcrumb from '../../components/Breadcrumb.svelte';
-	
+
 	/** @type {import('./$types').PageData} */
 	export let data;
 
@@ -31,8 +31,19 @@
 </script>
 
 <div class="container">
-	<Breadcrumb/>
-	<p class="query"><b>{#if country != ""}Results for country : {country} {/if} {#if city != ""}, city : {city} {/if}</b></p>
+	<Breadcrumb />
+	{#if country != ''}
+		<div class="filter">
+			<p class="query">
+				<b
+					>Results for country : {country}
+					{#if city != ''}, city : {city}
+					{/if}</b
+				>
+			</p>
+			<a href="/places" target="_self" id="reset-btn" class="btn btn-warning">Reset</a>
+		</div>
+	{/if}
 
 	<form>
 		<div class="row">
@@ -47,7 +58,7 @@
 					<PlaceCard {place} />
 				{/each}
 			{/await}
-			{:else}
+		{:else}
 			<div class="loading-container">
 				<h3>LOADING</h3>
 				<p>Looking for results !</p>
@@ -78,10 +89,23 @@
 		flex-direction: column;
 	}
 
-	.query {
+	.filter {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
 		color: white;
 		background-color: rgb(70, 70, 70);
 		padding: 10px 15px;
 		border-radius: 5px;
+		margin-bottom: 15px;
+	}
+
+	.query {
+		margin: 0;
+	}
+
+	#reset-btn {
+		width: 100px;
+		margin: 0 !important;
 	}
 </style>
