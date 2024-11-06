@@ -27,6 +27,7 @@
 		// Get query string from URL
 		const urlParams = new URLSearchParams(window.location.search);
 		placeId = urlParams.get('id') || '';
+		modeEditor = urlParams.get('mode') || 'Create';
 		// Load place from url param id if exists
 		if (placeId != '') {
 			placeDisplayed.id = parseInt(placeId);
