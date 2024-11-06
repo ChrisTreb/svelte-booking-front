@@ -38,7 +38,7 @@ import { EMOJI_STAR } from '../../../const/emoji';
 
 		<div class="col-lg-4 col-md-12">
 			<div class="place-rooms">
-
+				<h3>Available rooms</h3>
 			</div>
 		</div>
 	</div>
@@ -56,7 +56,7 @@ import { EMOJI_STAR } from '../../../const/emoji';
 
 	.place-rooms, .place-content {
 		height: 100%;
-		padding: 30px 50px;
+		padding: 15px 25px;
 		border: 1px solid rgba(158, 158, 158, 0.35);
 		border-radius: 5px;
 	}
