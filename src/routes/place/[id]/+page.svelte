@@ -1,13 +1,20 @@
-<script>
+<script lang="ts">
+	import { onMount } from 'svelte';
 	import Breadcrumb from '../../../components/Breadcrumb.svelte';
 	import ButtonPlaceEdit from '../../../components/ButtonPlaceEdit.svelte';
-import { EMOJI_STAR } from '../../../const/emoji';
-
+	import { EMOJI_STAR } from '../../../const/emoji';
+	import type { Room } from '../../../classes/Room';
+	import { getPlaceRooms } from '../../../dao/RoomDao';
+	import RoomCard from '../../../components/RoomCard.svelte';
+	
 	/** @type {import('./$types').PageData} */
-	export let data;
+	export let data: any;
+	export let placeId: number = data.place.id;
+	export let rooms: Promise<Room[]>;
 
-	/** @type {number} */
-	export let placeId = data.place.id;
+	onMount(() => {
+		rooms = getPlaceRooms(placeId);
+	});
 </script>
 
 <div class="container">
@@ -44,6 +51,13 @@ import { EMOJI_STAR } from '../../../const/emoji';
 		<div class="col-lg-4 col-md-12">
 			<div class="place-rooms">
 				<h3>Available rooms</h3>
+				{#await rooms then rooms}
+					{#if rooms}
+						{#each rooms as room}
+							<RoomCard {room} />
+						{/each}
+					{/if}
+				{/await}
 			</div>
 		</div>
 	</div>
