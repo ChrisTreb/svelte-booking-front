@@ -13,7 +13,6 @@ export function setRandPlaceImg(place: Place) {
     return { place };
 }
 
-
 /**
  * Get all countries available in DB
  */
@@ -115,11 +114,11 @@ export async function savePlace(place: Place) {
         body: JSON.stringify(place)
     });
 
-    // Awaiting response.json() 
-    const resData: object = await response.json();
-
+    // Awaiting response 
+    const resData: Response = response;
+    console.log(resData);
     // Return response data  
-    return resData;
+    return resData.status;
 }
 
 /**
@@ -134,10 +133,10 @@ export async function deletePlace(id : number) {
     const response = await fetch(url, { method: 'DELETE' });
 
     // Awaiting response.json() 
-    const resData: string = await response.text();
-
+    const resData: Response = response;
+    console.log(resData);
     // Return response data  
-    return resData;
+    return resData.status;
 }
 
 /**

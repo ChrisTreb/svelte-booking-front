@@ -5,17 +5,17 @@
 	import { getPlaceById, savePlace, deletePlace, validatePlace } from '../../../../dao/placeDao';
 	import { Place } from '../../../../classes/Place';
 	import Breadcrumb from '../../../../components/Breadcrumb.svelte';
+	import Alert from '../../../../components/Alert.svelte';
 
 	let placeDisplayed: Place;
 	placeDisplayed = new Place(0, new Date(), '', '', '', '', '', '', '', 1, '');
-	let promise;
-	let messageError: string = '';
-	let messageSuccess: string = '';
+	let promise: Place;
 	let placeId: string = '';
 	let modeEditor: string;
 
 	// DOM Elements
 	let modal: HTMLElement | null;
+	let message: string;
 
 	onMount(() => {
 		// Set editor to update mode
@@ -42,8 +42,7 @@
 		promise = await getPlaceById(placeDisplayed.id);
 
 		if (Object.keys(promise).length == 0) {
-			messageSuccess = '';
-			messageError = 'Place with id : ' + placeDisplayed.id + ', not found ! Sorry';
+			message = 'Place with id : ' + placeDisplayed.id + ', not found ! Sorry';
 			placeDisplayed = new Place(0, new Date(), '', '', '', '', '', '', '', 1, '');
 		} else {
 			placeDisplayed = new Place(
@@ -59,10 +58,7 @@
 				promise.rating,
 				promise.image
 			);
-
-			// Remove error value
-			messageError = '';
-			messageSuccess = 'Place with id : ' + placeDisplayed.id + ', found !';
+			message = 'Place with id : ' + placeDisplayed.id + ', found !';
 		}
 	}
 
@@ -86,16 +82,13 @@
 
 		if (validatePlace(place)) {
 			let response = await savePlace(place);
-			console.log('Save response : ' + JSON.stringify(response));
-			messageError = '';
-			if (modeEditor == 'Update') {
-				messageSuccess = 'Place ' + placeDisplayed.id + ' successfully updated !';
+			if (modeEditor == 'Update' && response == 200) {
+				message = 'Place ' + placeDisplayed.id + ' saved successfully ! Status : ' + response;
 			} else {
-				messageSuccess = 'Place successfully created !';
+				message = 'Error saving data !';
 			}
 		} else {
-			messageSuccess = '';
-			messageError = 'Error, missing required data !';
+			message = 'Error, missing required data !';
 		}
 	}
 
@@ -104,7 +97,11 @@
 	 */
 	async function handleClickDeletePlace() {
 		let response = await deletePlace(placeDisplayed.id);
-		console.log('Delete response : ' + response);
+		if (response == 200) {
+			message = 'Place with id : ' + placeDisplayed.id + ' successfully deleted !';
+		} else {
+			message = 'Error when deleting place with id : ' + placeDisplayed.id + " ! Status : " + response;
+		}
 	}
 
 	/**
@@ -112,8 +109,7 @@
 	*/
 	function resetForm() {
 		placeDisplayed = new Place(0, new Date(), '', '', '', '', '', '', '', 1, '');
-		messageError = "";
-		messageSuccess = "Empty form !"
+		message = "Empty form !";
 	}
 
 </script>
@@ -123,12 +119,13 @@
 	<div class="row">
 		<div class="col-lg-2 col-md-6 mb-2">
 			<label for="editor-mode" class="form-label">Select editor mode</label>
-			<select class="form-select" aria-label="editor mode" bind:value={modeEditor} on:change={() => {messageError = ""; messageSuccess = ""}}>
+			<select class="form-select" aria-label="editor mode" bind:value={modeEditor} on:change={resetForm}>
 				<option selected value="Update">Update</option>
 				<option value="Create">Create</option>
+				<option value="Delete">Delete</option>
 			</select>
 		</div>
-		{#if modeEditor == 'Update'}
+		{#if modeEditor == 'Update' || modeEditor == 'Delete'}
 			<div class="col-lg-2 col-md-6 mb-2">
 				<label for="place-id" class="form-label">Select place by id</label>
 				<input
@@ -144,18 +141,6 @@
 				<button id="place-id-submit" type="submit" class="col-1 btn btn-primary" on:click={getPlace}
 					>Get place</button
 				>
-			</div>
-		{/if}
-		{#if messageError != ''}
-			<div class="col-lg-4 col-md-12 mb-0 error-message alert alert-danger mt-3 alert-dismissible fade show">
-				<p>{messageError}</p>
-				<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-			</div>
-		{/if}
-		{#if messageSuccess != ''}
-			<div class="col-lg-4 col-md-12 mb-0 success-message alert alert-success mt-3 alert-dismissible fade show">
-				<p>{messageSuccess}</p>
-				<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 			</div>
 		{/if}
 		<div id="reset-form" class="col-lg-2 col-md-6 mb-2">
@@ -247,17 +232,10 @@
 				data-bs-toggle="modal"
 				data-bs-target="#popup">{modeEditor} place</button
 			>
-			{#if placeDisplayed.name != '' && placeDisplayed.name != undefined && placeDisplayed.name != null}
-				<button
-					type="submit"
-					class="col-lg-2 col-md-6 mt-3 btn btn-danger"
-					on:click={handleClickDeletePlace}>Delete place</button
-				>
-			{/if}
 		</div>
 	</div>
 
-	<!-- Modal Create / Update -->
+	<!-- Modal Create / Update / Delete -->
 	<div id="popup" class="modal" tabindex="-1">
 		<div class="modal-dialog">
 			<div class="modal-content">
@@ -267,25 +245,38 @@
 					></button>
 				</div>
 				<div class="modal-body">
-					<p>Do you want to save these data ?</p>
+					<p>{modeEditor} these data ?</p>
 					<ul>
-						<li>{placeDisplayed.name}</li>
-						<li>{placeDisplayed.country}</li>
-						<li>{placeDisplayed.city}</li>
+						<li>ID : {placeDisplayed.id}</li>
+						<li>NAME : {placeDisplayed.name}</li>
+						<li>COUNTRY : {placeDisplayed.country}</li>
+						<li>CITY : {placeDisplayed.city}</li>
 					</ul>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+					{#if modeEditor == 'Create' || modeEditor == 'Update'}
 					<button
 						type="button"
 						class="btn btn-primary"
 						data-bs-dismiss="modal"
 						on:click={handleClickSavePlace}>Save</button
 					>
+					{:else}
+					<button
+						type="button"
+						class="btn btn-danger"
+						data-bs-dismiss="modal"
+						on:click={handleClickDeletePlace}>Delete</button
+					>
+					{/if}
 				</div>
 			</div>
 		</div>
 	</div>
+
+	<!-- Alerte message -->
+	<Alert {message} />
 </div>
 
 <style>
@@ -304,18 +295,6 @@
 		display: flex;
 		flex-direction: column;
 		justify-content: end;
-	}
-
-	.alert {
-		z-index: 10;
-		position: fixed;
-		left: 50%;
-		bottom: 50%;
-		transform: translate(-50%, 0);
-	}
-
-	.alert > p {
-		margin: 0;
 	}
 
 	.place-id-form-button {
