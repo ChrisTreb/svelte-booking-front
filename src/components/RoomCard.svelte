@@ -8,7 +8,7 @@
     setRandRoomImg(room);
 </script>
 
-<div class="col-lg-12 col-md-12 col-sm-12">
+<div class="col-room col-lg-12 col-md-12 col-sm-12">
     <div class="card">
         <img src={room.image} title="place" alt="place"/>
         <div class="card-body">
@@ -19,3 +19,17 @@
         </div>
     </div>
 </div>
+
+<style>
+    .col-room {
+        margin-bottom: 20px;
+    }
+
+    p {
+        margin: 0;
+    }
+
+    .btn {
+        margin-top: 20px;
+    }
+</style>

@@ -77,12 +77,19 @@
 		position: relative;
 		height: 100%;
 		padding: 15px 25px;
+	}
+
+	.place-content {
 		border: 1px solid rgba(158, 158, 158, 0.35);
 		border-radius: 5px;
 	}
 
 	.img-container {
 		margin-bottom: 20px;
+	}
+
+	h1 {
+		max-width: 90%;
 	}
 
 	p {

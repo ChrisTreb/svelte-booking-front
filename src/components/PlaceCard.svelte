@@ -11,7 +11,7 @@
     setRandPlaceImg(place);
 </script>
 
-<div class="col-lg-4 col-md-6 col-sm-12">
+<div class="col-card col-lg-4 col-md-6 col-sm-12">
     <div class="card">
         <ButtonPlaceEdit {placeId} />
         <img src={place.image} title="place" alt="place"/>
@@ -28,6 +28,10 @@
 </div>
 
 <style>
+    .col-card {
+        margin-bottom: 20px;
+    }
+
     .card {
 		height: 100%;
 	}
