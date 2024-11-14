@@ -116,7 +116,7 @@
 
 <div class="container">
 	<Breadcrumb />
-	<div class="row">
+	<div id="controls" class="row">
 		<div class="col-lg-2 col-md-6 mb-2">
 			<label for="editor-mode" class="form-label">Select editor mode</label>
 			<select class="form-select" aria-label="editor mode" bind:value={modeEditor} on:change={resetForm}>
@@ -150,28 +150,28 @@
 
 	<div id="place-form" class="container-fluid mt-2">
 		<div class="row">
-			<div class="col-lg-6 col-sm-12 mb-3">
+			<div class="col-lg-3 col-sm-12 mb-3">
 				<label for="name" class="form-label">Name</label>
 				<input bind:value={placeDisplayed.name} type="text" class="form-control" id="name" />
 			</div>
-			<div class="col-lg-6 col-sm-12 mb-3">
+			<div class="col-lg-3 col-sm-12 mb-3">
 				<label for="country" class="form-label">Country</label>
 				<input bind:value={placeDisplayed.country} type="text" class="form-control" id="country" />
 			</div>
-		</div>
-		<div class="row">
-			<div class="col-lg-6 col-sm-12 mb-3">
+			<div class="col-lg-3 col-sm-12 mb-3">
 				<label for="city" class="form-label">City</label>
 				<input bind:value={placeDisplayed.city} type="text" class="form-control" id="city" />
 			</div>
-			<div class="col-lg-6 col-sm-12 mb-3">
+		</div>
+		<div class="row">
+			<div class="col-lg-9 col-sm-12 mb-3">
 				<label for="address" class="form-label">Address</label>
 				<input bind:value={placeDisplayed.address} type="text" class="form-control" id="address" />
 			</div>
 		</div>
 
 		<div class="row">
-			<div class="col-lg-4 col-sm-12 mb-3">
+			<div class="col-lg-2 col-sm-12 mb-3">
 				<label for="phone" class="form-label">Phone number</label>
 				<input
 					bind:value={placeDisplayed.phone_number}
@@ -180,11 +180,11 @@
 					id="phone"
 				/>
 			</div>
-			<div class="col-lg-4 col-sm-12 mb-3">
+			<div class="col-lg-3 col-sm-12 mb-3">
 				<label for="email" class="form-label">Email</label>
 				<input bind:value={placeDisplayed.email} type="text" class="form-control" id="email" />
 			</div>
-			<div class="col-lg-4 col-sm-12 mb-3">
+			<div class="col-lg-1 col-sm-12 mb-3">
 				<label for="rating" class="form-label">Rating</label>
 				<input
 					bind:value={placeDisplayed.rating}
@@ -197,7 +197,7 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-md-12 mb-3">
+			<div class="col-md-9 mb-3">
 				<label for="description" class="form-label">Description</label>
 				<textarea
 					bind:value={placeDisplayed.description}
@@ -207,12 +207,12 @@
 				/>
 			</div>
 		</div>
-		<div id="controls" class="row">
-			<div class="col-lg-6 col-md-12">
+		<div id="images" class="row">
+			<div class="col-lg-5 col-md-12">
 				<label for="image" class="form-label">Image url or string format Base 64</label>
-				<textarea bind:value={placeDisplayed.image} class="form-control" id="image" rows="10" />
+				<textarea bind:value={placeDisplayed.image} class="form-control" id="image" rows="12" />
 			</div>
-			<div class="col-lg-6 col-md-12 preview-container">
+			<div class="col-lg-4 col-md-12 preview-container">
 				{#if !/(http(s?)):\/\//i.test(placeDisplayed.image)}
 					<img
 						class="img-fluid"
@@ -285,10 +285,13 @@
 		margin-top: 80px;
 	}
 
+	label {
+		margin-left: 5px;
+		font-weight: bold;
+	}
+
 	#controls {
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
+		margin-left: 3px;
 	}
 
 	#reset-form {
@@ -309,8 +312,9 @@
 	}
 
 	.preview-container {
+		padding: 5px;
 		margin-top: 33px;
-		min-height: 250px;
+		min-height: 300px;
 		height: 100%;
 		border: 1px solid rgba(158, 158, 158, 0.35);
 		border-radius: 5px;
@@ -321,12 +325,11 @@
 
 	.preview-container > img {
 		height: 100%;
-		max-width: 60%;
 	}
 
 	.form-buttons {
 		display: flex;
 		align-items: center;
-		justify-content: space-evenly;
+		justify-content: center;
 	}
 </style>
