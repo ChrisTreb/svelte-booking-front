@@ -6,6 +6,7 @@
 	import { Place } from '../../../../classes/Place';
 	import Breadcrumb from '../../../../components/Breadcrumb.svelte';
 	import Alert from '../../../../components/Alert.svelte';
+	import Nav from '../../../../components/Nav.svelte';
 
 	let placeDisplayed: Place;
 	placeDisplayed = new Place(0, new Date(), '', '', '', '', '', '', '', 1, '');
@@ -114,6 +115,7 @@
 
 </script>
 
+<Nav />
 <div class="container">
 	<Breadcrumb />
 	<div id="controls" class="row">

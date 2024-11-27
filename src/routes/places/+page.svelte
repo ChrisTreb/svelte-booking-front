@@ -5,6 +5,7 @@
 	import PlaceCard from '../../components/PlaceCard.svelte';
 	import { getPlaceFormResults } from '../../dao/placeDao';
 	import Breadcrumb from '../../components/Breadcrumb.svelte';
+	import Nav from '../../components/Nav.svelte';
 
 	/** @type {import('./$types').PageData} */
 	export let data;
@@ -30,6 +31,7 @@
 	});
 </script>
 
+<Nav />
 <div class="container">
 	<Breadcrumb />
 	{#if country != ''}

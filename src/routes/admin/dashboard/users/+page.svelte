@@ -1,10 +1,12 @@
 <script>
 	import Breadcrumb from '../../../../components/Breadcrumb.svelte';
+	import Nav from '../../../../components/Nav.svelte';
 
 	/** @type {import('./$types').PageData} */
 	export let data;
 </script>
 
+<Nav />
 <div id="users-container">
     <Breadcrumb />
 	<div class="row">

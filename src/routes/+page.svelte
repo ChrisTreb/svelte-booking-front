@@ -1,11 +1,13 @@
 <script defer>
 	import PlaceFormComponent from '../components/PlaceFormComponent.svelte';
 	import PlaceCard from '../components/PlaceCard.svelte';
+	import Nav from '../components/Nav.svelte';
 		
 	/** @type {import('./$types').PageData} */
 	export let data;
 </script>
 
+<Nav />
 <div id="header">
 	<div>
 		<h2>Réservez vos vacances au meilleur prix</h2>
@@ -30,10 +32,10 @@
 
 <style>
 	#header {
-		padding: 100px;
+		padding: 10vw;
 		margin-bottom: -50px;
 		width: 100vw;
-		height: 50vh;
+		height: 80vh;
 		background-image: url(https://images.pexels.com/photos/60217/pexels-photo-60217.jpeg);
 		background-position: center;
 		background-size: cover;
@@ -43,12 +45,12 @@
 	}
 
 	h1 {
-		font-size: 4vw;
+		font-size: 50px;
 		font-weight: bold;
 	}
 
 	h2 {
-		font-size: 3vw;
+		font-size: 35px;
 	}
 
 	#header > div {

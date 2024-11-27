@@ -6,6 +6,7 @@
 	import type { Room } from '../../../classes/Room';
 	import { getPlaceRooms } from '../../../dao/RoomDao';
 	import RoomCard from '../../../components/RoomCard.svelte';
+	import Nav from '../../../components/Nav.svelte';
 	
 	/** @type {import('./$types').PageData} */
 	export let data: any;
@@ -17,6 +18,7 @@
 	});
 </script>
 
+<Nav />
 <div class="container">
 	<Breadcrumb />
 	<div class="main-row row">
