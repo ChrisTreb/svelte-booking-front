@@ -22,8 +22,8 @@
             <p class="card-text">
                 {place.description}
             </p>
-            <a href="/place/{place.id}" class="btn btn-primary">Go {place.country}</a>
         </div>
+        <a href="/place/{place.id}" class="btn btn-primary btn-place">Go {place.country}</a>
     </div>
 </div>
 
@@ -40,4 +40,9 @@
 		width: 100%;
 		height: auto;
 	}
+
+    .btn-place {
+        margin: 10px 50px;
+        border-radius: 25px;
+    }
 </style>
