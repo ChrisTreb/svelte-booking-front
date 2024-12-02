@@ -108,7 +108,7 @@
 		margin: 10px;
 	}
 
-	@media (max-width: 768px), screen and (orientation: portrait) {
+	@media (max-width: 768px) {
 		.navbar-brand {
 			display: none;
 		}
