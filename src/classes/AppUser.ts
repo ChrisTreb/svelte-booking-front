@@ -11,6 +11,8 @@ export class AppUser {
     country! : string;
     role! : string;
     image! : string;
+    login! : string;
+    password! : string;
 
     constructor(
         id : number,
@@ -24,7 +26,9 @@ export class AppUser {
         city : string,
         country : string,
         role : string,
-        image : string
+        image : string,
+        login : string,
+        password: string
     ) {
         this.id = id;
         this.created_at = created_at;
@@ -38,5 +42,7 @@ export class AppUser {
         this.country = country;
         this.role = role;
         this.image = image;
+        this.login = login;
+        this.password = password;
     }
 }
