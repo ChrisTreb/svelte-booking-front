@@ -4,7 +4,7 @@
 	import Nav from '../../components/Nav.svelte';
 
     let user: AppUser;
-    user = new AppUser(0, new Date(), "", "", "", "", new Date(), "", "", "", "", "");
+    user = new AppUser(0, new Date(), "", "", "", "", new Date(), "", "", "", "", "", "", "");
 
 </script>
 
