@@ -1,5 +1,5 @@
 <!-- Nav -->
-<nav class="navbar navbar-expand-md fixed-top bg-body-tertiary">
+<nav class="navbar navbar-expand-md fixed-top">
 	<a class="navbar-brand" href="/">Book&nbsp;App</a>
 	<button
 		class="navbar-toggler"
@@ -57,6 +57,20 @@
 	.navbar-brand {
 		margin-left: 90px;
 		font-weight: bolder;
+	}
+
+	.navbar-toggler {
+		margin-top: 5px !important;
+		background-color: #F8F9FA;
+	}
+
+	.navbar-brand, .nav-link {
+		margin-top: 5px !important;
+		text-align: center;
+		background-color: #F8F9FA;
+		padding: 5px;
+		border-radius: 25px;
+		width: 130px;
 	}
 
 	.navbar-toggler {
