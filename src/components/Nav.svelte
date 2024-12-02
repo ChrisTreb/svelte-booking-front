@@ -19,7 +19,7 @@
 				data-bs-toggle="dropdown"
 				aria-expanded="false"
 			>
-			<i class="fa-solid fa-pen-to-square"></i>&nbsp;Dashboard
+				<i class="fa-solid fa-pen-to-square"></i>&nbsp;Dashboard
 			</a>
 			<ul class="dropdown-menu">
 				<li><a class="dropdown-item" href="/admin/dashboard/place-editor">Place edit</a></li>
@@ -27,28 +27,32 @@
 				<li><a class="dropdown-item" href="/admin/dashboard/users">Users</a></li>
 			</ul>
 		</div>
-		<a class="nav-link" href="/sign-up"><i class="fa-solid fa-pencil"></i> Sign&nbsp;up</a>
-		<div class="nav-item dropdown">
-			<a
-				class="nav-link dropdown-toggle"
-				href="/"
-				role="button"
-				data-bs-toggle="dropdown"
-				aria-expanded="false"
-			>
-			<i class="fa-solid fa-right-to-bracket"></i> Sign&nbsp;in
-			</a>
-			<div class="dropdown-menu">
-				<form>
-					<div class="mb-3">
-						<input type="text" class="form-control" id="login" placeholder="Login">
-					</div>
-					<div class="mb-3">
-						<input type="password" class="form-control" id="password" placeholder="Password">
-					</div>
-					<button type="submit" class="btn btn-primary">Submit</button>
-				</form>
+		<div id="sign">
+			<div class="nav-item dropdown">
+				<a
+					class="nav-link dropdown-toggle"
+					href="/"
+					role="button"
+					data-bs-toggle="dropdown"
+					aria-expanded="false"
+				>
+					<i class="fa-solid fa-right-to-bracket"></i> Sign&nbsp;in
+				</a>
+				<div class="dropdown-menu">
+					<form>
+						<div class="mb-3">
+							<input type="text" class="form-control" id="login" placeholder="Login" />
+						</div>
+						<div class="mb-3">
+							<input type="password" class="form-control" id="password" placeholder="Password" />
+						</div>
+						<button type="submit" class="btn btn-primary">Submit</button>
+					</form>
+				</div>
 			</div>
+			<a id="sign-up" class="nav-link" href="/sign-up"
+				><i class="fa-solid fa-pencil"></i> Sign&nbsp;up</a
+			>
 		</div>
 	</div>
 </nav>
@@ -61,16 +65,28 @@
 
 	.navbar-toggler {
 		margin-top: 5px !important;
-		background-color: #F8F9FA;
+		background-color: #f8f9fa;
 	}
 
-	.navbar-brand, .nav-link {
+	.navbar-brand,
+	.nav-link {
 		margin-top: 5px !important;
 		text-align: center;
-		background-color: #F8F9FA;
+		background-color: #f8f9fa;
 		padding: 5px;
 		border-radius: 25px;
 		width: 130px;
+	}
+
+	.nav-link {
+		margin: 0 5px !important;
+	}
+
+	#sign {
+		display: flex;
+		position: absolute;
+		right: 5px;
+		top: 18px;
 	}
 
 	.navbar-toggler {
@@ -90,5 +106,16 @@
 	form {
 		min-width: 200px;
 		margin: 10px;
+	}
+
+	@media (max-width: 768px), screen and (orientation: portrait) {
+		.navbar-brand {
+			display: none;
+		}
+		
+		#collapsibleNavbar {
+			margin-top: 50px;
+			background-color: #f8f9fa;
+		}
 	}
 </style>
