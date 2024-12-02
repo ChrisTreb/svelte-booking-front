@@ -68,7 +68,7 @@
 	}
 
 	.header-img {
-		background-image: url(https://images.pexels.com/photos/870170/pexels-photo-870170.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1);
+		background-image: url(https://images.pexels.com/photos/164595/pexels-photo-164595.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1);
 		background-position: center;
 		background-repeat: no-repeat;
 		background-size: cover;
