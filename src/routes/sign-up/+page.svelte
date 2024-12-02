@@ -113,6 +113,7 @@
     form > .form-row {
         display: flex;
         justify-content: flex-start;
+        flex-wrap: wrap;
     }
 
     .form-row > div {
