@@ -18,4 +18,9 @@
 </nav>
 
 <style>
+	nav {
+		width: 100%;
+		margin-bottom: 20px;
+		height: 30px;
+	}
 </style>

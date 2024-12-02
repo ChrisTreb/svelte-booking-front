@@ -46,10 +46,9 @@
 
 <style>
 	#users-container {
+        min-height: 100vh;
 		margin-top: 80px;
 		padding: 0 10%;
-		display: flex;
-		flex-wrap: wrap;
 	}
 
 	.card {
