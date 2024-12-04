@@ -1,15 +1,34 @@
-<!-- Nav -->
-<nav class="navbar navbar-expand-md fixed-top">
-	<a class="navbar-brand" href="/">Book&nbsp;App</a>
+<nav id="nav">
 	<button
-		class="navbar-toggler"
+		id="btn-menu"
+		class="btn"
 		type="button"
-		data-bs-toggle="collapse"
-		data-bs-target="#collapsibleNavbar"
+		data-bs-toggle="offcanvas"
+		data-bs-target="#offcanvasScrolling"
+		aria-controls="offcanvasScrolling"><i class="fa-solid fa-bars"></i></button
 	>
-		<span class="navbar-toggler-icon"></span>
-	</button>
-	<div class="collapse navbar-collapse" id="collapsibleNavbar">
+
+	<!-- Sign up -->
+	<a id="sign-up" class="nav-link" href="/sign-up"
+		><i class="fa-solid fa-pencil"></i>&nbsp;Sign&nbsp;up</a
+	>
+</nav>
+
+<div
+	class="offcanvas offcanvas-start"
+	data-bs-scroll="true"
+	data-bs-backdrop="false"
+	tabindex="-1"
+	id="offcanvasScrolling"
+	aria-labelledby="offcanvasScrollingLabel"
+>
+	<div class="offcanvas-header">
+		<h5 class="offcanvas-title" id="offcanvasScrollingLabel">
+			<a class="navbar-brand" href="/">Book&nbsp;App</a>
+		</h5>
+		<button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+	</div>
+	<div class="offcanvas-body">
 		<a class="nav-link" href="/places"><i class="fa-solid fa-hotel"></i>&nbsp;Places</a>
 		<div class="nav-item dropdown">
 			<a
@@ -50,72 +69,46 @@
 					</form>
 				</div>
 			</div>
-			<a id="sign-up" class="nav-link" href="/sign-up"
-				><i class="fa-solid fa-pencil"></i> Sign&nbsp;up</a
-			>
 		</div>
 	</div>
-</nav>
+</div>
 
 <style>
-	.navbar-brand {
-		margin-left: 90px;
-		font-weight: bolder;
-	}
-
-	.navbar-toggler {
-		margin-top: 5px !important;
-		background-color: #f8f9fa;
-	}
-
-	.navbar-brand,
-	.nav-link {
-		margin-top: 5px !important;
-		text-align: center;
-		background-color: #f8f9fa;
-		padding: 5px;
-		border-radius: 25px;
-		width: 130px;
-	}
-
-	.nav-link {
-		margin: 0 5px !important;
-	}
-
-	#sign {
+	#nav {
+		z-index: 100;
+		padding: 0 30px;
+		width: 100vw;
 		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
+
+	#btn-menu {
+		z-index: 100;
+		position: fixed;
+		top: 20px;
+		width: 50px;
+		height: 50px;
+		padding: 5px;
+		background-color: #f0dfc6;
+		font-family: 30px;
+		border-radius: 25px;
+	}
+
+	#sign-up {
 		position: absolute;
-		right: 5px;
-		top: 18px;
+		right: 15px;
+		top: 20px;
+		font-weight: bold;
+		display: flex;
+		align-items: center;
+		height: 30px;
+		background-color: #f0dfc6;
+		border-radius: 25px;
+		padding: 0 10px;
 	}
 
-	.navbar-toggler {
-		position: absolute;
-		top: 10px;
-		left: 20px;
-	}
-
-	#collapsibleNavbar {
-		margin: 10px 0;
-	}
-
-	.nav-link {
-		margin: 0 20px;
-	}
-
-	form {
-		min-width: 200px;
-		margin: 10px;
-	}
-
-	@media (max-width: 768px) {
-		.navbar-brand {
-			display: none;
-		}
-		
-		#collapsibleNavbar {
-			margin-top: 50px;
-			background-color: #f8f9fa;
-		}
-	}
+	 #offcanvasScrolling {
+		z-index: 200;
+	 }
 </style>
