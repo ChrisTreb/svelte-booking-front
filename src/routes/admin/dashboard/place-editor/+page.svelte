@@ -101,18 +101,18 @@
 		if (response == 200) {
 			message = 'Place with id : ' + placeDisplayed.id + ' successfully deleted !';
 		} else {
-			message = 'Error when deleting place with id : ' + placeDisplayed.id + " ! Status : " + response;
+			message =
+				'Error when deleting place with id : ' + placeDisplayed.id + ' ! Status : ' + response;
 		}
 	}
 
 	/**
 	 * Reset form
-	*/
+	 */
 	function resetForm() {
 		placeDisplayed = new Place(0, new Date(), '', '', '', '', '', '', '', 1, '');
-		message = "Empty form !";
+		message = 'Empty form !';
 	}
-
 </script>
 
 <Nav />
@@ -120,8 +120,13 @@
 	<Breadcrumb />
 	<div id="controls" class="row">
 		<div class="col-lg-2 col-md-6 mb-2">
-			<label for="editor-mode" class="form-label">Select editor mode</label>
-			<select class="form-select" aria-label="editor mode" bind:value={modeEditor} on:change={resetForm}>
+			<label for="editor-mode" class="form-label">Editor mode</label>
+			<select
+				class="form-select"
+				aria-label="editor mode"
+				bind:value={modeEditor}
+				on:change={resetForm}
+			>
 				<option selected value="Update">Update</option>
 				<option value="Create">Create</option>
 				<option value="Delete">Delete</option>
@@ -129,7 +134,7 @@
 		</div>
 		{#if modeEditor == 'Update' || modeEditor == 'Delete'}
 			<div class="col-lg-2 col-md-6 mb-2">
-				<label for="place-id" class="form-label">Select place by id</label>
+				<label for="place-id" class="form-label">Place id</label>
 				<input
 					bind:value={placeDisplayed.id}
 					type="number"
@@ -149,91 +154,103 @@
 			<button class="btn btn-warning" on:click={resetForm}>Reset</button>
 		</div>
 	</div>
-
-	<div id="place-form" class="container-fluid mt-2">
-		<div class="row">
-			<div class="col-lg-3 col-sm-12 mb-3">
-				<label for="name" class="form-label">Name</label>
-				<input bind:value={placeDisplayed.name} type="text" class="form-control" id="name" />
-			</div>
-			<div class="col-lg-3 col-sm-12 mb-3">
-				<label for="country" class="form-label">Country</label>
-				<input bind:value={placeDisplayed.country} type="text" class="form-control" id="country" />
-			</div>
-			<div class="col-lg-3 col-sm-12 mb-3">
-				<label for="city" class="form-label">City</label>
-				<input bind:value={placeDisplayed.city} type="text" class="form-control" id="city" />
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-lg-9 col-sm-12 mb-3">
-				<label for="address" class="form-label">Address</label>
-				<input bind:value={placeDisplayed.address} type="text" class="form-control" id="address" />
-			</div>
-		</div>
-
-		<div class="row">
-			<div class="col-lg-2 col-sm-12 mb-3">
-				<label for="phone" class="form-label">Phone number</label>
-				<input
-					bind:value={placeDisplayed.phone_number}
-					type="text"
-					class="form-control"
-					id="phone"
-				/>
-			</div>
-			<div class="col-lg-3 col-sm-12 mb-3">
-				<label for="email" class="form-label">Email</label>
-				<input bind:value={placeDisplayed.email} type="text" class="form-control" id="email" />
-			</div>
-			<div class="col-lg-1 col-sm-12 mb-3">
-				<label for="rating" class="form-label">Rating</label>
-				<input
-					bind:value={placeDisplayed.rating}
-					type="number"
-					min="1"
-					max="5"
-					class="form-control"
-					id="rating"
-				/>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-9 mb-3">
-				<label for="description" class="form-label">Description</label>
-				<textarea
-					bind:value={placeDisplayed.description}
-					class="form-control"
-					id="description"
-					rows="5"
-				/>
-			</div>
-		</div>
-		<div id="images" class="row">
-			<div class="col-lg-5 col-md-12">
-				<label for="image" class="form-label">Image url or string format Base 64</label>
-				<textarea bind:value={placeDisplayed.image} class="form-control" id="image" rows="12" />
-			</div>
-			<div class="col-lg-4 col-md-12 preview-container">
-				{#if !/(http(s?)):\/\//i.test(placeDisplayed.image)}
-					<img
-						class="img-fluid"
-						src="data:image/jpg;base64, {placeDisplayed.image}"
-						alt="preview"
-						title="preview"
+	<div id="form-container">
+		<div id="place-form" class="container-fluid mt-2">
+			<div class="row">
+				<div class="col-lg-4 col-sm-12 mb-3">
+					<label for="name" class="form-label">Name</label>
+					<input bind:value={placeDisplayed.name} type="text" class="form-control" id="name" />
+				</div>
+				<div class="col-lg-4 col-sm-12 mb-3">
+					<label for="country" class="form-label">Country</label>
+					<input
+						bind:value={placeDisplayed.country}
+						type="text"
+						class="form-control"
+						id="country"
 					/>
-				{:else}
-					<img class="img-fluid" src={placeDisplayed.image} alt="preview" title="preview" />
-				{/if}
+				</div>
+				<div class="col-lg-4 col-sm-12 mb-3">
+					<label for="city" class="form-label">City</label>
+					<input bind:value={placeDisplayed.city} type="text" class="form-control" id="city" />
+				</div>
 			</div>
-		</div>
-		<div class="row form-buttons">
-			<button
-				type="submit"
-				class="col-lg-2 col-md-6 mt-3 btn btn-primary"
-				data-bs-toggle="modal"
-				data-bs-target="#popup">{modeEditor} place</button
-			>
+			<div class="row">
+				<div class="col-lg-12 col-sm-12 mb-3">
+					<label for="address" class="form-label">Address</label>
+					<input
+						bind:value={placeDisplayed.address}
+						type="text"
+						class="form-control"
+						id="address"
+					/>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-lg-5 col-sm-12 mb-3">
+					<label for="phone" class="form-label">Phone number</label>
+					<input
+						bind:value={placeDisplayed.phone_number}
+						type="text"
+						class="form-control"
+						id="phone"
+					/>
+				</div>
+				<div class="col-lg-5 col-sm-12 mb-3">
+					<label for="email" class="form-label">Email</label>
+					<input bind:value={placeDisplayed.email} type="text" class="form-control" id="email" />
+				</div>
+				<div class="col-lg-2 col-sm-12 mb-3">
+					<label for="rating" class="form-label">Rating</label>
+					<input
+						bind:value={placeDisplayed.rating}
+						type="number"
+						min="1"
+						max="5"
+						class="form-control"
+						id="rating"
+					/>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12 mb-3">
+					<label for="description" class="form-label">Description</label>
+					<textarea
+						bind:value={placeDisplayed.description}
+						class="form-control"
+						id="description"
+						rows="5"
+					/>
+				</div>
+			</div>
+			<div id="images" class="row">
+				<div class="col-lg-6 col-md-12">
+					<label for="image" class="form-label">Image url, base 64</label>
+					<textarea bind:value={placeDisplayed.image} class="form-control" id="image" rows="12" />
+				</div>
+				<div class="col-lg-6 col-md-12 preview-container">
+					{#if !/(http(s?)):\/\//i.test(placeDisplayed.image)}
+						<img
+							class="img-fluid"
+							src="data:image/jpg;base64, {placeDisplayed.image}"
+							alt="preview"
+							title="preview"
+						/>
+					{:else}
+						<img class="img-fluid" src={placeDisplayed.image} alt="preview" title="preview" />
+					{/if}
+				</div>
+			</div>
+			<div class="row form-buttons">
+				<button
+					id="submit-form"
+					type="submit"
+					class="col-lg-2 col-md-6 mt-3 btn btn-primary"
+					data-bs-toggle="modal"
+					data-bs-target="#popup">{modeEditor} place</button
+				>
+			</div>
 		</div>
 	</div>
 
@@ -258,19 +275,19 @@
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
 					{#if modeEditor == 'Create' || modeEditor == 'Update'}
-					<button
-						type="button"
-						class="btn btn-primary"
-						data-bs-dismiss="modal"
-						on:click={handleClickSavePlace}>Save</button
-					>
+						<button
+							type="button"
+							class="btn btn-primary"
+							data-bs-dismiss="modal"
+							on:click={handleClickSavePlace}>Save</button
+						>
 					{:else}
-					<button
-						type="button"
-						class="btn btn-danger"
-						data-bs-dismiss="modal"
-						on:click={handleClickDeletePlace}>Delete</button
-					>
+						<button
+							type="button"
+							class="btn btn-danger"
+							data-bs-dismiss="modal"
+							on:click={handleClickDeletePlace}>Delete</button
+						>
 					{/if}
 				</div>
 			</div>
@@ -287,12 +304,24 @@
 		margin-top: 80px;
 	}
 
+	#form-container {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	#place-form {
+		width: 50%;
+	}
+
 	label {
 		margin-left: 5px;
 		font-weight: bold;
 	}
 
 	#controls {
+		display: flex;
+		justify-content: center;
 		margin-left: 3px;
 	}
 
@@ -315,18 +344,13 @@
 
 	.preview-container {
 		padding: 5px;
-		margin-top: 33px;
+		margin-top: 32px;
 		min-height: 300px;
-		height: 100%;
 		border: 1px solid rgba(158, 158, 158, 0.35);
 		border-radius: 5px;
 		display: flex;
 		align-items: center;
 		justify-content: center;
-	}
-
-	.preview-container > img {
-		height: 100%;
 	}
 
 	.form-buttons {
@@ -335,5 +359,9 @@
 		justify-content: start;
 		margin-top: 10px;
 		margin-left: 3px;
+	}
+
+	#submit-form {
+		width: auto;
 	}
 </style>
