@@ -19,13 +19,13 @@
             <h5 class="card-title">{place.name}</h5>
         </div>
 		<div class="card-body">
-			<p><b>Country </b>{place.country}</p>
-            <p><b>City    </b> {place.city}</p>
+			<p><b>Country&nbsp;&nbsp;&nbsp;</b>{place.country}</p>
+            <p><b>City&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b> {place.city}</p>
 			<p class="card-text">
 				{place.description}
 			</p>
 		</div>
-		<a href="/place/{place.id}" class="btn btn-primary btn-place">Go {place.country}</a>
+		<a href="/place/{place.id}" class="btn btn-place">Go {place.country}</a>
 	</div>
 </div>
 
@@ -84,5 +84,6 @@
 	.btn-place {
 		margin: 10px 50px;
 		border-radius: 25px;
+		background-color: #f0dfc6;
 	}
 </style>
