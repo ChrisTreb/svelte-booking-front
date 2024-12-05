@@ -160,9 +160,6 @@ export function validatePlace(place: Place) {
     if (place.description == null || place.description == undefined || place.description == "") {
         validation = false;
     }
-    if (place.description == null || place.description == undefined || place.description == "") {
-        validation = false;
-    }
     if (place.phone_number == null || place.phone_number == undefined || place.phone_number == "") {
         validation = false;
     }

@@ -1,13 +1,27 @@
 <script lang="ts">
 	import { AppUser } from '../../classes/AppUser';
+	import Alert from '../../components/Alert.svelte';
 	import Breadcrumb from '../../components/Breadcrumb.svelte';
 	import Nav from '../../components/Nav.svelte';
+	import { checkIsLoginAlreadyUsed, saveUser, validateUser } from '../../dao/UserDao';
 
 	let user: AppUser;
+	let message: string;
+
 	user = new AppUser(0, new Date(), '', '', '', '', new Date(), '', '', '', '', '', '', '');
 
-	function logUser() {
-		console.log(user);
+	async function handleClickSaveUser(user: AppUser) {
+		if (validateUser(user)) {
+			let response = await saveUser(user);
+
+			if (response == 200) {
+				message = 'User created successfully, code : ' + response;
+			} else {
+				message = 'User not created, error happened during process, code : ' + response;
+			}
+		} else {
+			message = "Please complete form";
+		}
 	}
 </script>
 
@@ -163,10 +177,51 @@
 				/>
 			</div>
 
-			<button type="submit" on:click={logUser} class="btn btn-primary">Register</button>
+			<button
+				type="submit"
+				class="col-lg-2 col-md-6 mt-3 btn btn-primary"
+				data-bs-toggle="modal"
+				data-bs-target="#popup">Register</button
+			>
 		</form>
 	</div>
 </div>
+
+<!-- Modal Create / Update / Delete -->
+<div id="popup" class="modal" tabindex="-1">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title">Sign up</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				<p>Register these data ?</p>
+				<ul>
+					<li>Login : {user.login}</li>
+					<li>Email : {user.email}</li>
+					<li>Firstname : {user.firstname}</li>
+					<li>Lastname : {user.lastname}</li>
+					<li>Country : {user.country}</li>
+					<li>City : {user.city}</li>
+					<li>Address : {user.address}</li>
+				</ul>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+				<button
+					type="button"
+					class="btn btn-primary"
+					data-bs-dismiss="modal"
+					on:click={() => handleClickSaveUser(user)}>Register</button
+				>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- Alerte message -->
+<Alert {message} />
 
 <style>
 	#sign-up-page {
@@ -175,11 +230,11 @@
 		margin-top: 80px;
 	}
 
-    #sign-up-page > div {
-        display: flex;
+	#sign-up-page > div {
+		display: flex;
 		align-items: center;
 		justify-content: center;
-    }
+	}
 
 	form {
 		width: 50%;
@@ -199,9 +254,10 @@
 		font-weight: bold;
 	}
 
-    input, select {
-        background-color: #F8F9FA;
-    }
+	input,
+	select {
+		background-color: #f8f9fa;
+	}
 
 	.long-input {
 		margin: 10px;
@@ -213,5 +269,11 @@
 
 	.required {
 		color: red;
+	}
+
+	@media (max-width: 991px) {
+		form {
+			width: 100%;
+		}
 	}
 </style>

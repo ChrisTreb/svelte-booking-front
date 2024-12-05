@@ -15,7 +15,7 @@
                 <p class="user-id">ID {user.id}</p>
                 <div class="row">
                     <div class="card-image col-lg-12 col-md-12 col-sm-3">
-                        {#if user.image != null && user.image != undefined}
+                        {#if user.image != null && user.image != undefined && user.image != ""}
                             <img
                                 class="card-img-top img-fluid"
                                 src="data:image/png;base64, {user.image}"
