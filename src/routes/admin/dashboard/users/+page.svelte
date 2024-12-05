@@ -7,7 +7,7 @@
 </script>
 
 <Nav />
-<div id="users-container">
+<div id="users-container" class="container">
     <Breadcrumb />
 	<div class="row">
 		{#each data.appUsers as user}

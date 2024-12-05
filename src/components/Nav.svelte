@@ -1,3 +1,33 @@
+<script>
+	import { onMount } from 'svelte';
+
+	/**
+	 * @type {HTMLElement | null}
+	 */
+	let mask;
+	/**
+	 * @type {HTMLElement | null}
+	 */
+	let menu;
+
+	onMount(() => {
+		mask = document.getElementById('mask');
+		menu = document.getElementById('offcanvasScrolling');
+	});
+
+	function toggleMask() {
+		if (menu != null && mask != null && menu.classList.contains('hide')) {
+			mask.style.transform = 'translateX(200px)';
+			mask.style.opacity = '0.7';
+			menu.classList.replace('hide', 'show');
+		} else if (menu != null && mask != null && menu.classList.contains('show')) {
+			mask.style.transform = 'translateX(calc(100vw - 200px))';
+			mask.style.opacity = '0';
+			menu.classList.replace('show', 'hide');
+		}
+	}
+</script>
+
 <nav id="nav">
 	<button
 		id="btn-menu"
@@ -5,7 +35,8 @@
 		type="button"
 		data-bs-toggle="offcanvas"
 		data-bs-target="#offcanvasScrolling"
-		aria-controls="offcanvasScrolling"><i class="fa-solid fa-bars"></i></button
+		aria-controls="offcanvasScrolling"
+		on:click={toggleMask}><i class="fa-solid fa-bars"></i></button
 	>
 
 	<!-- Sign up -->
@@ -15,7 +46,7 @@
 </nav>
 
 <div
-	class="offcanvas offcanvas-start"
+	class="offcanvas offcanvas-start hide"
 	data-bs-scroll="true"
 	data-bs-backdrop="false"
 	tabindex="-1"
@@ -24,9 +55,16 @@
 >
 	<div class="offcanvas-header">
 		<h5 class="offcanvas-title" id="offcanvasScrollingLabel">
-			<a class="navbar-brand" href="/">Book&nbsp;App</a>
+			<b><a class="navbar-brand" href="/">Book&nbsp;App</a></b>
 		</h5>
-		<button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+		<button
+			id="btn-menu-close"
+			on:click={toggleMask}
+			type="button"
+			class="btn-close"
+			data-bs-dismiss="offcanvas"
+			aria-label="Close"
+		></button>
 	</div>
 	<div class="offcanvas-body">
 		<a class="nav-link" href="/places"><i class="fa-solid fa-hotel"></i>&nbsp;Places</a>
@@ -46,32 +84,32 @@
 				<li><a class="dropdown-item" href="/admin/dashboard/users">Users</a></li>
 			</ul>
 		</div>
-		<div id="sign">
-			<div class="nav-item dropdown">
-				<a
-					class="nav-link dropdown-toggle"
-					href="/"
-					role="button"
-					data-bs-toggle="dropdown"
-					aria-expanded="false"
-				>
-					<i class="fa-solid fa-right-to-bracket"></i> Sign&nbsp;in
-				</a>
-				<div class="dropdown-menu">
-					<form>
-						<div class="mb-3">
-							<input type="text" class="form-control" id="login" placeholder="Login" />
-						</div>
-						<div class="mb-3">
-							<input type="password" class="form-control" id="password" placeholder="Password" />
-						</div>
-						<button type="submit" class="btn btn-primary">Submit</button>
-					</form>
-				</div>
+		<div class="nav-item dropdown">
+			<a
+				class="nav-link dropdown-toggle"
+				href="/"
+				role="button"
+				data-bs-toggle="dropdown"
+				aria-expanded="false"
+			>
+				<i class="fa-solid fa-right-to-bracket"></i> Sign&nbsp;in
+			</a>
+			<div class="dropdown-menu">
+				<form id="sign-in-form">
+					<div class="mb-3">
+						<input type="text" class="form-control" id="login" placeholder="Login" />
+					</div>
+					<div class="mb-3">
+						<input type="password" class="form-control" id="password" placeholder="Password" />
+					</div>
+					<button type="submit" class="btn btn-primary">Submit</button>
+				</form>
 			</div>
 		</div>
 	</div>
 </div>
+
+<div id="mask"></div>
 
 <style>
 	#nav {
@@ -96,6 +134,7 @@
 	}
 
 	#sign-up {
+		z-index: 300;
 		position: absolute;
 		right: 15px;
 		top: 20px;
@@ -108,7 +147,38 @@
 		padding: 0 10px;
 	}
 
-	 #offcanvasScrolling {
+	#offcanvasScrolling {
+		width: 200px;
 		z-index: 200;
-	 }
+		padding: 10px;
+		background-color: #f0dfc6;;
+	}
+
+	.offcanvas-body > .nav-link, .nav-item {
+		padding: 10px;
+		margin: 5px;
+		border: 1px solid rgb(214, 214, 214);
+		border-radius: 5px;
+		background-color: white;
+	}
+
+	#mask {
+		z-index: 150;
+		opacity: 0;
+		background-color: black;
+		position: fixed;
+		top: 0;
+		width: calc(100vw - 200px);
+		height: 100vh;
+		transform: translateX(calc(100vw - 200px));
+		transition: 0.2s;
+	}
+
+	#sign-in-form {
+		padding: 10px;
+	}
+
+	#sign-in-form > div > input {
+		background-color: #f0dfc6;
+	}
 </style>

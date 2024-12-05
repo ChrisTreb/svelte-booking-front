@@ -8,7 +8,7 @@
 </script>
 
 <Nav />
-<div id="header">
+<div id="header" class="container">
 	<div class="row header-row">
 		<div class="col-md-8 col-sm-12 header-text">
 			<div>
@@ -38,7 +38,8 @@
 <style>
 	#header {
 		padding: 4vw 10vw;
-		margin-bottom: -50px;
+		margin: 0 0 -50px 0;
+		max-width: 100vw;
 		width: 100vw;
 		height: 80vh;
 		background-image: url(https://images.pexels.com/photos/60217/pexels-photo-60217.jpeg);
