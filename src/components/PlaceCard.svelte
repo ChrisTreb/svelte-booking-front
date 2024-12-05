@@ -50,10 +50,9 @@
     }
 
     .card-title {
-        margin: 5px 0;
         font-weight: bold;
         color: white;
-        padding: 5px;
+        padding: 10px;
         background-color: rgba(51, 51, 51, 0.700);
     }
 
@@ -76,8 +75,8 @@
 		height: auto;
 		display: -webkit-box;
 		-webkit-box-orient: vertical;
-		-webkit-line-clamp: 4;
-		line-clamp: 4;
+		-webkit-line-clamp: 3;
+		line-clamp: 3;
 		overflow: hidden;
 	}
 
