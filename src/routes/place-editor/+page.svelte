@@ -2,11 +2,11 @@
 	import { onMount } from 'svelte';
 
 	/** @type {import('./$types').PageData} */
-	import { getPlaceById, savePlace, deletePlace, validatePlace } from '../../../../dao/placeDao';
-	import { Place } from '../../../../classes/Place';
-	import Breadcrumb from '../../../../components/Breadcrumb.svelte';
-	import Alert from '../../../../components/Alert.svelte';
-	import Nav from '../../../../components/Nav.svelte';
+	import { getPlaceById, savePlace, deletePlace, validatePlace } from '../../dao/placeDao';
+	import { Place } from '../../classes/Place';
+	import Breadcrumb from '../../components/Breadcrumb.svelte';
+	import Alert from '../../components/Alert.svelte';
+	import Nav from '../../components/Nav.svelte';
 
 	let placeDisplayed: Place;
 	placeDisplayed = new Place(0, new Date(), '', '', '', '', '', '', '', 1, '');

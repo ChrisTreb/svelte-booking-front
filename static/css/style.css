@@ -1,0 +1,22 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    scrollbar-width: thin;
+}
+
+body {
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+footer {
+    width: 100vw;
+    height: 50px;
+    margin-top: 50px;
+    background-color: rgb(37, 37, 37);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

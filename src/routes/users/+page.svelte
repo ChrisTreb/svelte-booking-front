@@ -1,6 +1,6 @@
 <script>
-	import Breadcrumb from '../../../../components/Breadcrumb.svelte';
-	import Nav from '../../../../components/Nav.svelte';
+	import Breadcrumb from '../../components/Breadcrumb.svelte';
+	import Nav from '../../components/Nav.svelte';
 
 	/** @type {import('./$types').PageData} */
 	export let data;

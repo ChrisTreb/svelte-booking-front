@@ -68,22 +68,9 @@
 	</div>
 	<div class="offcanvas-body">
 		<a class="nav-link" href="/places"><i class="fa-solid fa-hotel"></i>&nbsp;Places</a>
-		<div class="nav-item dropdown">
-			<a
-				class="nav-link dropdown-toggle"
-				href="/"
-				role="button"
-				data-bs-toggle="dropdown"
-				aria-expanded="false"
-			>
-				<i class="fa-solid fa-pen-to-square"></i>&nbsp;Dashboard
-			</a>
-			<ul class="dropdown-menu">
-				<li><a class="dropdown-item" href="/admin/dashboard/place-editor">Place edit</a></li>
-				<li><a class="dropdown-item" href="/admin/dashboard/room-editor">Room edit</a></li>
-				<li><a class="dropdown-item" href="/admin/dashboard/users">Users</a></li>
-			</ul>
-		</div>
+		<a class="nav-link" href="/place-editor"><i class="fa-solid fa-pen-to-square"></i>&nbsp;Place editor</a>
+		<a class="nav-link" href="/room-editor"><i class="fa-solid fa-pen-to-square"></i>&nbsp;Room editor</a>
+		<a class="nav-link" href="/users"><i class="fa-solid fa-user"></i>&nbsp;Users</a>
 		<div class="nav-item dropdown">
 			<a
 				class="nav-link dropdown-toggle"
@@ -176,9 +163,5 @@
 
 	#sign-in-form {
 		padding: 10px;
-	}
-
-	#sign-in-form > div > input {
-		background-color: #f0dfc6;
 	}
 </style>

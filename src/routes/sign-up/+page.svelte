@@ -254,11 +254,6 @@
 		font-weight: bold;
 	}
 
-	input,
-	select {
-		background-color: #f8f9fa;
-	}
-
 	.long-input {
 		margin: 10px;
 	}
