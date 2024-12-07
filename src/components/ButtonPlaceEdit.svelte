@@ -4,7 +4,7 @@
 
 </script>
 
-<a class="edit-btn" href="/admin/dashboard/place-editor?id={placeId}&mode=Update"><i class="fa-solid fa-pencil"></i></a>
+<a class="edit-btn" href="/place-editor?id={placeId}&mode=Update"><i class="fa-solid fa-pencil"></i></a>
 
 <style>
     .edit-btn {
