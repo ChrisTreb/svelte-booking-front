@@ -158,11 +158,11 @@
 		<div id="place-form" class="container-fluid mt-2">
 			<div class="row">
 				<div class="col-lg-4 col-sm-12 mb-3">
-					<label for="name" class="form-label">Name</label>
+					<label for="name" class="form-label">Name <span class="required">*</span></label>
 					<input bind:value={placeDisplayed.name} type="text" class="form-control" id="name" />
 				</div>
 				<div class="col-lg-4 col-sm-12 mb-3">
-					<label for="country" class="form-label">Country</label>
+					<label for="country" class="form-label">Country <span class="required">*</span></label>
 					<input
 						bind:value={placeDisplayed.country}
 						type="text"
@@ -171,13 +171,13 @@
 					/>
 				</div>
 				<div class="col-lg-4 col-sm-12 mb-3">
-					<label for="city" class="form-label">City</label>
+					<label for="city" class="form-label">City <span class="required">*</span></label>
 					<input bind:value={placeDisplayed.city} type="text" class="form-control" id="city" />
 				</div>
 			</div>
 			<div class="row">
 				<div class="col-lg-12 col-sm-12 mb-3">
-					<label for="address" class="form-label">Address</label>
+					<label for="address" class="form-label">Address <span class="required">*</span></label>
 					<input
 						bind:value={placeDisplayed.address}
 						type="text"
@@ -189,7 +189,7 @@
 
 			<div class="row">
 				<div class="col-lg-5 col-sm-12 mb-3">
-					<label for="phone" class="form-label">Phone number</label>
+					<label for="phone" class="form-label">Phone number <span class="required">*</span></label>
 					<input
 						bind:value={placeDisplayed.phone_number}
 						type="text"
@@ -198,7 +198,7 @@
 					/>
 				</div>
 				<div class="col-lg-5 col-sm-12 mb-3">
-					<label for="email" class="form-label">Email</label>
+					<label for="email" class="form-label">Email <span class="required">*</span></label>
 					<input bind:value={placeDisplayed.email} type="text" class="form-control" id="email" />
 				</div>
 				<div class="col-lg-2 col-sm-12 mb-3">
@@ -215,7 +215,7 @@
 			</div>
 			<div class="row">
 				<div class="col-md-12 mb-3">
-					<label for="description" class="form-label">Description</label>
+					<label for="description" class="form-label">Description <span class="required">*</span></label>
 					<textarea
 						bind:value={placeDisplayed.description}
 						class="form-control"
@@ -363,5 +363,9 @@
 
 	#submit-form {
 		width: auto;
+	}
+
+	.required {
+		color: red;
 	}
 </style>

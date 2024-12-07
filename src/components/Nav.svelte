@@ -115,9 +115,11 @@
 		width: 50px;
 		height: 50px;
 		padding: 5px;
-		background-color: #f0dfc6;
+		background-color: white;
+		border: 1px solid black;
 		font-family: 30px;
 		border-radius: 25px;
+		transition: 0.5s;
 	}
 
 	#sign-up {
@@ -129,16 +131,22 @@
 		display: flex;
 		align-items: center;
 		height: 30px;
-		background-color: #f0dfc6;
+		background-color: white;
+		border: 1px solid black;
 		border-radius: 25px;
-		padding: 0 10px;
+		padding: 20px;
+		transition: 0.5s;
+	}
+
+	#btn-menu:hover, #sign-up:hover {
+		transform: scale(0.95);
+		background-color: #F0DFC6;
 	}
 
 	#offcanvasScrolling {
 		width: 200px;
 		z-index: 200;
 		padding: 10px;
-		background-color: #f0dfc6;;
 	}
 
 	.offcanvas-body > .nav-link, .nav-item {
@@ -146,7 +154,7 @@
 		margin: 5px;
 		border: 1px solid rgb(214, 214, 214);
 		border-radius: 5px;
-		background-color: white;
+		transition: 0.5s;
 	}
 
 	#mask {
@@ -162,6 +170,6 @@
 	}
 
 	#sign-in-form {
-		padding: 10px;
+		padding: 15px;
 	}
 </style>

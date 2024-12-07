@@ -2,7 +2,7 @@
 	import PlaceFormComponent from '../components/PlaceFormComponent.svelte';
 	import PlaceCard from '../components/PlaceCard.svelte';
 	import Nav from '../components/Nav.svelte';
-
+	
 	/** @type {import('./$types').PageData} */
 	export let data;
 </script>

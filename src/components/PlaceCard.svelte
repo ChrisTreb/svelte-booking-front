@@ -40,7 +40,7 @@
 
     .card-img {
         width: 100%;
-        height: 200px;
+        height: 300px;
         background-size: cover;
         background-position: center;
         background-image: url();
@@ -84,5 +84,12 @@
 		margin: 10px 50px;
 		border-radius: 25px;
 		background-color: #f0dfc6;
+		font-weight: bold;
+		box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+		transition: 0.2s;
+	}
+
+	.btn-place:hover {
+		transform: scale(0.95);
 	}
 </style>
