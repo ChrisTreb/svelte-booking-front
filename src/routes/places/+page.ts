@@ -11,6 +11,12 @@ export async function load({ fetch }) {
 
 	const res = await fetch(url);
 	places = await res.json();
+	
+	// Sort by city
+	places.sort((a, b) => {
+		if (a.city < b.city) return -1;
+		return a.city > b.city ? 1 : 0;
+	});
 
 	return { places };
 }

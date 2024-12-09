@@ -8,6 +8,7 @@ export class Room {
     guests_capacity! : number;
     is_available! :  boolean;
     image! : string;
+    description! : string;
 
     constructor(
         id : number,
@@ -18,7 +19,8 @@ export class Room {
         price_per_night : number,
         guests_capacity : number,
         is_available :  boolean,
-        image : string
+        image : string,
+        description: string
     ) {
         this.id = id;
         this.place_id = place_id;
@@ -29,5 +31,6 @@ export class Room {
         this.guests_capacity = guests_capacity;
         this.is_available = is_available;
         this.image = image;
+        this.description = description;
     }
 }
