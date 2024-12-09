@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import Breadcrumb from '../../../components/Breadcrumb.svelte';
 	import ButtonPlaceEdit from '../../../components/ButtonPlaceEdit.svelte';
 	import { EMOJI_STAR } from '../../../const/emoji';
 	import type { Room } from '../../../classes/Room';
@@ -20,7 +19,6 @@
 
 <Nav />
 <div class="container">
-	<Breadcrumb />
 	<div class="main-row row">
 		<div class="col-lg-8 col-md-12">
 			<div class="place-content">

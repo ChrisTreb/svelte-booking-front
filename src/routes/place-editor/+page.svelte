@@ -368,4 +368,10 @@
 	.required {
 		color: red;
 	}
+
+	@media (max-width: 768px) {
+		#place-form {
+			width: 100%;
+		}
+	}
 </style>
