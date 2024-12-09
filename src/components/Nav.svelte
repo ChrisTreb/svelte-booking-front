@@ -21,7 +21,7 @@
 			mask.style.opacity = '0.7';
 			menu.classList.replace('hide', 'show');
 		} else if (menu != null && mask != null && menu.classList.contains('show')) {
-			mask.style.transform = 'translateX(calc(100vw - 200px))';
+			mask.style.transform = 'translateX(100vw)';
 			mask.style.opacity = '0';
 			menu.classList.replace('show', 'hide');
 		}
@@ -165,7 +165,7 @@
 		top: 0;
 		width: calc(100vw - 200px);
 		height: 100vh;
-		transform: translateX(calc(100vw - 200px));
+		transform: translateX(100vw);
 		transition: 0.2s;
 	}
 
