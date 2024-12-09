@@ -1,16 +1,21 @@
 <script defer lang="ts">
 	import { onMount } from 'svelte';
 
-	import { getRoomById, saveRoom, deleteRoom, validateRoom, getPlaceRooms } from '../../dao/RoomDao';
+	import {
+		getRoomById,
+		saveRoom,
+		deleteRoom,
+		validateRoom,
+		getPlaceRooms
+	} from '../../dao/RoomDao';
 	import { Room } from '../../classes/Room';
 	import Breadcrumb from '../../components/Breadcrumb.svelte';
 	import Alert from '../../components/Alert.svelte';
 	import Nav from '../../components/Nav.svelte';
-	import { Place } from '../../classes/Place';
 	import { getPlaceById } from '../../dao/placeDao';
-	import { ALT_PLACES_IMG, getRandElFromArr } from '../../const/url';
+	import { ALT_PLACES_IMG } from '../../const/url';
 	import RoomCard from '../../components/RoomCard.svelte';
-
+	
 	let roomDisplayed: Room;
 	roomDisplayed = new Room(0, 0, new Date(), 0, '', 0, 0, false, '', '');
 	let promise: Room;
@@ -18,18 +23,17 @@
 	let modeEditor: string;
 	let isAvailable: number = 0;
 
-	// Place associated
-	let place: Place = new Place(0, new Date(), '', '', '', '', '', '', '', 1, '');
-
 	// DOM Elements
 	let modal: HTMLElement | null;
 	let message: string;
+	let info: HTMLElement;
+	let btnCloseInfo: HTMLElement; 
 
 	onMount(() => {
 		// Set editor to update mode
 		modeEditor = 'Create';
 
-		// Get Modal element
+		// Modal element
 		modal = document.getElementById('popup');
 
 		// Get query string from URL
@@ -128,7 +132,24 @@
 		} else if (isAvailable == 1) {
 			roomDisplayed.is_available = true;
 		}
-		// console.log(roomDisplayed);
+	}
+
+	/**
+	 * Place info display
+	 */
+	function showInfo() {
+		if(roomDisplayed.place_id > 0) {
+			info.style.transform = "translateX(0)";
+			info.classList.replace("close", "open");
+		} else {
+			info.style.transform = "translateX(-100vw)";
+			info.classList.replace("open", "close");
+		}
+	}
+
+	function hideInfo() {
+		info.style.transform = "translateX(-100vw)";
+		info.classList.replace("open", "close");
 	}
 </script>
 
@@ -136,7 +157,7 @@
 <div class="container">
 	<Breadcrumb />
 	<div class="row">
-		<div class="col-md-6 col-sm-12">
+		<div class="col-md-12 col-sm-12">
 			<div id="controls" class="row">
 				<div class="col-lg-3 col-md-6 mb-2">
 					<label for="editor-mode" class="form-label">Editor mode</label>
@@ -352,28 +373,39 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-md-6 col-sm-12">
-			<div class="row">
-				{#if roomDisplayed.place_id > 0}
-					{#await getPlaceById(roomDisplayed.place_id) then place}
-						<div class="col-12 mb-5">
-							<div class="place-img mb-4" style="background-image: url('{getRandElFromArr(ALT_PLACES_IMG)}');">
-								<h5 class="place-title">ID : {place.id} - {place.name}</h5>
-							</div>
-							<div class="place-body">
-								<p><b>Country&nbsp;&nbsp;&nbsp;</b>{place.country}</p>
-								<p><b>City&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b> {place.city}</p>
-								<p class="place-text mt-4">
-									{place.description}
-								</p>
-							</div>
+
+		<!-- Alerte message -->
+		<Alert {message} />
+	</div>
+</div>
+
+<div id="info" class="close" bind:this={info}>
+	<button id="btn-close-info" class="btn" on:click={hideInfo}><i class="fa-solid fa-xmark"></i></button>
+	<div class="row">
+		<div class="col-md-4 col-sm-12">
+			{#if roomDisplayed.place_id > 0}
+				{#await getPlaceById(roomDisplayed.place_id) then place}
+					<div class="col-12 mb-2">
+						<div class="place-img mb-2" style="background-image: url('{ALT_PLACES_IMG[0]}');">
+							<h5 class="place-title">ID : {place.id} - {place.name}</h5>
 						</div>
-					{/await}
-				{/if}
+						<div class="place-body">
+							<p><b>Country&nbsp;&nbsp;&nbsp;</b>{place.country}</p>
+							<p><b>City&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b> {place.city}</p>
+							<p class="place-text mt-1">
+								{place.description}
+							</p>
+						</div>
+					</div>
+				{/await}
+			{/if}
+		</div>
+		<div class="col-md-8">
+			<div class="room-infos row">
 				{#if roomDisplayed.place_id > 0}
 					{#await getPlaceRooms(roomDisplayed.place_id) then rooms}
 						{#each rooms as room}
-							<div class="col-md-6 col-sm-12">
+							<div class="col-md-3 col-sm-12">
 								<RoomCard {room} />
 							</div>
 						{/each}
@@ -382,8 +414,9 @@
 			</div>
 		</div>
 	</div>
-	<!-- Alerte message -->
-	<Alert {message} />
+	<div id="toggle-info">
+		<button id="btn-toggle-info" class="btn" on:click={showInfo}><i class="fa-solid fa-arrow-up-right-from-square"></i></button>
+	</div>
 </div>
 
 <style>
@@ -399,7 +432,7 @@
 	}
 
 	#room-form {
-		width: 100%;
+		width: 50%;
 	}
 
 	label {
@@ -459,27 +492,88 @@
 	}
 
 	/* Place */
+	#toggle-info {
+		z-index: 100;
+		background-color: white;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		font-size: 20px;
+		width: 50px;
+		height: 50px;
+		position: absolute;
+		bottom: 0;
+		right: -50px;
+		border: 1px solid black;
+		border-radius: 0 5px 0 0;
+	}
+
+	#btn-toggle-info {
+		font-size: 20px;
+	}
+
+	#btn-close-info {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		position: absolute;
+		top: 10px;
+		left: 10px;
+		width: 40px;
+		height: 40px;
+		border: 1px solid black;
+		border-radius: 20px;
+		font-size: 20px;
+		transition: 0.5s;
+	}
+
+	#btn-close-info:hover {
+		transform: scale(0.95);
+	}
+
+	#info {
+		z-index: 100;
+		position: fixed;
+		bottom: 0;
+		width: 100vw;
+		height: 50vh;
+		background-color: white;
+		padding: 10px 80px;
+		box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+		transform: translateX(-100vw);
+		transition: 0.5s;
+	}
+
+	.room-infos {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		overflow-y: scroll;
+	}
+
 	.place-img {
-        width: 100%;
-        height: 300px;
-        background-size: cover;
-        background-position: center;
-        background-image: url();
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-    }
+		width: 100%;
+		height: 200px;
+		background-size: cover;
+		background-position: center;
+		background-image: url();
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+	}
 
-    .place-title {
-        font-weight: bold;
-        color: white;
-        padding: 10px;
-        background-color: rgba(51, 51, 51, 0.700);
-    }
+	.place-title {
+		font-size: 16px;
+		font-weight: bold;
+		color: white;
+		padding: 10px;
+		background-color: rgba(51, 51, 51, 0.7);
+	}
 
-    .place-body > p {
-        margin-bottom: 5px;
-    }
+	.place-body > p {
+		font-size: 14px;
+		margin-bottom: 5px;
+	}
 
 	.place-text {
 		width: 100%;
