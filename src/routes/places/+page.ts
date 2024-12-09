@@ -4,7 +4,9 @@ import { BACKEND_API_URL } from '../../const/url.js';
 /** @type {import('./$types').PageLoad} */
 export async function load({ fetch }) {
 
-    const url = BACKEND_API_URL + "place/id?firstId=1&limit=6";
+	const defaultCountry = "France";
+
+    const url = BACKEND_API_URL + "place/country/" + defaultCountry;
     let places : Place[] = [];
 
 	const res = await fetch(url);
