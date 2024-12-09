@@ -1,16 +1,13 @@
 <script defer lang="ts">
 	import { onMount } from 'svelte';
 
-	/** @type {import('./$types').PageData} */
-	import { getRoomById, saveRoom, deleteRoom, validateRoom, getPlaceRooms } from '../../dao/roomDao';
+	import { getRoomById, saveRoom, deleteRoom, validateRoom, getPlaceRooms } from '../../dao/RoomDao';
 	import { Room } from '../../classes/Room';
 	import Breadcrumb from '../../components/Breadcrumb.svelte';
 	import Alert from '../../components/Alert.svelte';
 	import Nav from '../../components/Nav.svelte';
-	import PlaceCard from '../../components/PlaceCard.svelte';
 	import { Place } from '../../classes/Place';
 	import { getPlaceById } from '../../dao/placeDao';
-	import { EMOJI_STAR } from '../../const/emoji';
 	import { ALT_PLACES_IMG, getRandElFromArr } from '../../const/url';
 	import RoomCard from '../../components/RoomCard.svelte';
 
