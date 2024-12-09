@@ -83,7 +83,7 @@
 
 		if (validatePlace(place)) {
 			let response = await savePlace(place);
-			if (modeEditor == 'Update' && response == 200) {
+			if ((modeEditor == 'Update' || modeEditor == 'Create') && response == 200) {
 				message = 'Place ' + placeDisplayed.id + ' saved successfully ! Status : ' + response;
 			} else {
 				message = 'Error saving data !';

@@ -88,7 +88,7 @@
 
 		if (validateRoom(room)) {
 			let response = await saveRoom(room);
-			if (modeEditor == 'Update' && response == 200) {
+			if ((modeEditor == 'Update' || modeEditor == 'Create') && response == 200) {
 				message = 'Room ' + roomDisplayed.id + ' saved successfully ! Status : ' + response;
 			} else {
 				message = 'Error saving data !';
@@ -128,7 +128,7 @@
 		} else if (isAvailable == 1) {
 			roomDisplayed.is_available = true;
 		}
-		console.log(roomDisplayed);
+		// console.log(roomDisplayed);
 	}
 </script>
 
