@@ -79,6 +79,12 @@
 		padding: 15px 25px;
 	}
 
+	.place-rooms {
+		max-height: 90vh;
+		overflow-y: scroll;
+		scrollbar-width: thin;
+	}
+
 	.place-content {
 		border: 1px solid rgba(158, 158, 158, 0.35);
 		border-radius: 5px;

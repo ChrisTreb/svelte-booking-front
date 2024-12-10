@@ -26,6 +26,11 @@ export async function getPlaceRooms(id: number) {
 
     if (res.ok) {
         rooms = await res.json();
+        // Sort by city
+        rooms.sort((a, b) => {
+            if (a.price_per_night < b.price_per_night) return -1;
+            return a.price_per_night > b.price_per_night ? 1 : 0;
+        });
     } else {
         console.log("Error while calling endpoint : " + url + ", status : " + res.status);
     }
