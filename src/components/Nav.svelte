@@ -172,4 +172,12 @@
 	#sign-in-form {
 		padding: 15px;
 	}
+
+	/* Media queries */
+
+	@media (max-width: 768px) {
+		#btn-menu {
+			left: 10px;
+		}
+	}
 </style>
