@@ -176,13 +176,17 @@
 					bind:value={user.image}
 				/>
 			</div>
-
+			{#if validateUser(user)}
 			<button
 				type="submit"
 				class="col-lg-2 col-md-6 mt-3 btn btn-primary"
+				
+
 				data-bs-toggle="modal"
+				
 				data-bs-target="#popup">Register</button
 			>
+			{/if}
 		</form>
 	</div>
 </div>

@@ -59,6 +59,9 @@ export function validateUser(user: AppUser) {
     if (user.city == null || user.city == undefined || user.city == "") {
         validation = false;
     }
+    if (user.date_of_birth == null || user.date_of_birth == undefined) {
+        validation = false;
+    }
     if (user.country == null || user.country == undefined || user.country == "") {
         validation = false;
     }
