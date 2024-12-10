@@ -26,7 +26,6 @@
 	let modal: HTMLElement | null;
 	let message: string;
 	let info: HTMLElement;
-	let btnCloseInfo: HTMLElement; 
 
 	onMount(() => {
 		// Set editor to update mode
