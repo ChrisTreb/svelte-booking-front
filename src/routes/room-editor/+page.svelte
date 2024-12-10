@@ -406,7 +406,13 @@
 					{#await getPlaceRooms(roomDisplayed.place_id) then rooms}
 						{#each rooms as room}
 							<div class="col-md-3 col-sm-12">
-								<RoomCard {room} />
+								<div class="room-card-info">
+									<p>Id : {room.id}</p>
+									<p>Number : {room.room_number}</p>
+									<p>Price : {room.price_per_night} €</p>
+									<p>Type : {room.room_type}</p>
+									<p>Capacity : {room.guests_capacity} person(s)</p>
+								</div>
 							</div>
 						{/each}
 					{/await}
@@ -517,8 +523,8 @@
 		align-items: center;
 		justify-content: center;
 		position: absolute;
-		top: 10px;
-		left: 10px;
+		top: 15px;
+		left: 15px;
 		width: 40px;
 		height: 40px;
 		border: 1px solid black;
@@ -536,9 +542,9 @@
 		position: fixed;
 		bottom: 0;
 		width: 100vw;
-		height: 50vh;
+		height: 45vh;
 		background-color: white;
-		padding: 10px 80px;
+		padding: 15px 80px;
 		box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 		transform: translateX(-100vw);
 		transition: 0.5s;
@@ -578,8 +584,27 @@
 	.place-text {
 		width: 100%;
 		height: auto;
+		display: -webkit-box;
+		-webkit-box-orient: vertical;
+		-webkit-line-clamp: 4;
+		line-clamp: 4;
+		overflow: hidden;
 	}
 
+	/* Room card info */
+	.room-card-info {
+		padding: 10px;
+		border: 1px solid rgb(151, 151, 151);
+		border-radius: 5px;
+		background-color: rgb(58, 58, 58);
+	}
+
+	.room-card-info > p {
+		color: white;
+		margin: 5px;
+	}
+
+	/* Media queries */
 	@media (max-width: 768px) {
 		#room-form {
 			width: 100%;

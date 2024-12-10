@@ -15,8 +15,6 @@
             <h5 class="card-title">Room {room.room_type}</h5>
         </div>
         <div class="card-body">
-            <p>Room id : {room.id}</p>
-            <p>Room number : {room.room_number}</p>
             <p>Capacity : {room.guests_capacity} guest(s)</p>
             <a href="/room/{room.id}" class="btn btn-primary">Reserve</a>
         </div>
