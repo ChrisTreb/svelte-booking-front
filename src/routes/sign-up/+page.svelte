@@ -8,7 +8,7 @@
 	let user: AppUser;
 	let message: string;
 
-	user = new AppUser(0, new Date(), '', '', '', '', new Date(), '', '', '', '', '', '', '');
+	user = new AppUser(0, new Date(), '', '', '', '', new Date(), '', '', 'user', '', '', '', '');
 
 	async function handleClickSaveUser(user: AppUser) {
 		if (validateUser(user)) {
