@@ -84,7 +84,7 @@
 		if (validatePlace(place)) {
 			let response = await savePlace(place);
 			if ((modeEditor == 'Update' || modeEditor == 'Create') && response == 200) {
-				message = 'Place ' + placeDisplayed.id + ' saved successfully ! Status : ' + response;
+				message = 'Place saved successfully !';
 			} else {
 				message = 'Error saving data !';
 			}
@@ -99,10 +99,10 @@
 	async function handleClickDeletePlace() {
 		let response = await deletePlace(placeDisplayed.id);
 		if (response == 200) {
-			message = 'Place with id : ' + placeDisplayed.id + ' successfully deleted !';
+			message = 'Place id : ' + placeDisplayed.id + ' successfully deleted !';
 		} else {
 			message =
-				'Error when deleting place with id : ' + placeDisplayed.id + ' ! Status : ' + response;
+				'Error deleting place id : ' + placeDisplayed.id + ' !';
 		}
 	}
 

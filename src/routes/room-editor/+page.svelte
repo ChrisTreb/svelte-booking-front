@@ -14,8 +14,7 @@
 	import Nav from '../../components/Nav.svelte';
 	import { getPlaceById } from '../../dao/placeDao';
 	import { ALT_PLACES_IMG } from '../../const/url';
-	import RoomCard from '../../components/RoomCard.svelte';
-	
+		
 	let roomDisplayed: Room;
 	roomDisplayed = new Room(0, 0, new Date(), 0, '', 0, 0, false, '', '');
 	let promise: Room;
@@ -56,6 +55,7 @@
 		if (Object.keys(promise).length == 0) {
 			message = 'Room with id : ' + roomDisplayed.id + ', not found ! Sorry';
 			roomDisplayed = new Room(0, 0, new Date(), 0, '', 0, 0, false, '', '');
+			hideInfo();
 		} else {
 			roomDisplayed = new Room(
 				promise.id,
@@ -69,7 +69,7 @@
 				promise.image,
 				promise.description
 			);
-			message = 'Room with id : ' + roomDisplayed.id + ', found !';
+			message = 'Room id : ' + roomDisplayed.id + ', found !';
 		}
 	}
 
@@ -93,7 +93,7 @@
 		if (validateRoom(room)) {
 			let response = await saveRoom(room);
 			if ((modeEditor == 'Update' || modeEditor == 'Create') && response == 200) {
-				message = 'Room ' + roomDisplayed.id + ' saved successfully ! Status : ' + response;
+				message = 'Room saved successfully !';
 			} else {
 				message = 'Error saving data !';
 			}
@@ -111,7 +111,7 @@
 			message = 'Room with id : ' + roomDisplayed.id + ' successfully deleted !';
 		} else {
 			message =
-				'Error when deleting room with id : ' + roomDisplayed.id + ' ! Status : ' + response;
+				'Error deleting room id : ' + roomDisplayed.id + ' !';
 		}
 	}
 
@@ -119,6 +119,7 @@
 	 * Reset form
 	 */
 	function resetForm() {
+		hideInfo();
 		roomDisplayed = new Room(0, 0, new Date(), 0, '', 0, 0, false, '', '');
 		message = 'Empty form !';
 	}
@@ -142,14 +143,15 @@
 			info.style.transform = "translateX(0)";
 			info.classList.replace("close", "open");
 		} else {
-			info.style.transform = "translateX(-100vw)";
-			info.classList.replace("open", "close");
+			hideInfo();
 		}
 	}
 
 	function hideInfo() {
-		info.style.transform = "translateX(-100vw)";
-		info.classList.replace("open", "close");
+		if (info.classList.contains("open")) {
+			info.style.transform = "translateX(-100vw)";
+			info.classList.replace("open", "close");
+		}
 	}
 </script>
 
@@ -159,7 +161,7 @@
 	<div class="row">
 		<div class="col-md-12 col-sm-12">
 			<div id="controls" class="row">
-				<div class="col-lg-3 col-md-6 mb-2">
+				<div class="col-lg-2 col-md-6 mb-2">
 					<label for="editor-mode" class="form-label">Editor mode</label>
 					<select
 						class="form-select"
@@ -173,7 +175,7 @@
 					</select>
 				</div>
 				{#if modeEditor == 'Update' || modeEditor == 'Delete'}
-					<div class="col-lg-3 col-md-6 mb-2">
+					<div class="col-lg-2 col-md-6 mb-2">
 						<label for="room-id" class="form-label">Room id</label>
 						<input
 							bind:value={roomDisplayed.id}
@@ -184,7 +186,7 @@
 							id="room-id"
 						/>
 					</div>
-					<div class="col-lg-3 col-md-6 room-id-form-button mb-2">
+					<div class="col-lg-2 col-md-6 room-id-form-button mb-2">
 						<button
 							id="room-id-submit"
 							type="submit"
@@ -193,7 +195,7 @@
 						>
 					</div>
 				{/if}
-				<div id="reset-form" class="col-lg-3 col-md-6 mb-2">
+				<div id="reset-form" class="col-lg-2 col-md-6 mb-2">
 					<button class="btn btn-warning" on:click={resetForm}>Reset</button>
 				</div>
 			</div>
@@ -608,6 +610,10 @@
 	@media (max-width: 768px) {
 		#room-form {
 			width: 100%;
+		}
+
+		#info {
+			display: none;
 		}
 	}
 </style>
