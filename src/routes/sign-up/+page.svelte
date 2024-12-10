@@ -3,7 +3,7 @@
 	import Alert from '../../components/Alert.svelte';
 	import Breadcrumb from '../../components/Breadcrumb.svelte';
 	import Nav from '../../components/Nav.svelte';
-	import { checkIsLoginAlreadyUsed, saveUser, validateUser } from '../../dao/UserDao';
+	import {saveUser, validateUser } from '../../dao/UserDao';
 
 	let user: AppUser;
 	let message: string;
