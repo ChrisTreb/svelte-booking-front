@@ -180,11 +180,14 @@
 			<button
 				type="submit"
 				class="col-lg-2 col-md-6 mt-3 btn btn-primary"
-				
-
 				data-bs-toggle="modal"
-				
 				data-bs-target="#popup">Register</button
+			>
+			{:else}
+			<button
+				disabled
+				type="submit"
+				class="col-lg-4 col-md-6 mt-3 btn btn-warning">Fill required fields</button
 			>
 			{/if}
 		</form>
