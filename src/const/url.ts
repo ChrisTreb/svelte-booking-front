@@ -38,6 +38,8 @@ export const ALT_PLACES_IMG: string[] = [
     "https://images.pexels.com/photos/2983472/pexels-photo-2983472.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
 ];
 
+export const DEFAULT_ROOM_IMG: string = "https://images.pexels.com/photos/271619/pexels-photo-271619.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1";
+
 /**
  * Get random element from specific Array
  * @param array

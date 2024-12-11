@@ -1,11 +1,11 @@
 <script>
 	import { Room } from "../classes/Room";
-	import { setRandRoomImg } from "../dao/RoomDao";
+	import { setRoomImg } from "../dao/RoomDao";
 
     /** @type { Room } */
     export let room;
 
-    setRandRoomImg(room);
+    setRoomImg(room);
 </script>
 
 <div class="col-room col-lg-12 col-md-12 col-sm-12">

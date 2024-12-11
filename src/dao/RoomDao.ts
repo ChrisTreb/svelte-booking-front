@@ -1,12 +1,12 @@
 import { Room } from "../classes/Room";
-import { BACKEND_API_URL, BACKEND_URL } from "../const/url";
+import { BACKEND_API_URL, BACKEND_URL, DEFAULT_ROOM_IMG } from "../const/url";
 
 /**
- * Set room random image
+ * Set room image
  */
-export function setRandRoomImg(room: Room) {
+export function setRoomImg(room: Room) {
     if (room.image == null || room.image == "") {
-        room.image = "https://images.pexels.com/photos/271619/pexels-photo-271619.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1";
+        room.image = DEFAULT_ROOM_IMG;
     } else if (!/(http(s?)):\/\//i.test(room.image)) {
         room.image = "data:image/png;base64, " + room.image;
     }
