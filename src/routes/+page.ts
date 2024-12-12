@@ -1,5 +1,6 @@
 import { BACKEND_API_URL } from '../const/url.js';
 import type { Place } from '../classes/Place.js';
+import { setRandPlaceImg } from '../dao/placeDao.js';
 
 function getRandomInt(max : number) {
 	return Math.floor(Math.random() * max);
@@ -15,6 +16,10 @@ export async function load({ fetch }) {
 
 	const resPlaces = await fetch(urlPlaces);
 	places = await resPlaces.json();
+
+	places.forEach((place) => {
+		setRandPlaceImg(place);
+	})
 
 	return { places };
 }

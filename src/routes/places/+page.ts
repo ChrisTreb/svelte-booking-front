@@ -1,5 +1,6 @@
 import { type Place } from '../../classes/Place.js';
 import { BACKEND_API_URL } from '../../const/url.js';
+import { setRandPlaceImg } from '../../dao/placeDao.js';
 
 /** @type {import('./$types').PageLoad} */
 export async function load({ fetch }) {
@@ -16,6 +17,10 @@ export async function load({ fetch }) {
 	places.sort((a, b) => {
 		if (a.city < b.city) return -1;
 		return a.city > b.city ? 1 : 0;
+	});
+
+	places.forEach((place) => {
+		setRandPlaceImg(place);
 	});
 
 	return { places };

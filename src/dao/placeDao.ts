@@ -75,6 +75,10 @@ export async function getPlaceFormResults(country : string, city : string) {
             console.log("Error while calling endpoint : " + url + ", status : " + res.status);
         }
     }
+
+    places.forEach((place) => {
+        setRandPlaceImg(place);
+    });
     
     return places;
 }
@@ -91,9 +95,13 @@ export async function getPlaceById(id: number) {
 
     if (res.ok) {
         place = await res.json();
+        
     } else {
         console.log("Error while calling endpoint : " + url + ", status : " + res.status);
     }
+    // Set an image if image is null
+    setRandPlaceImg(place);
+
     return place;
 }
 
