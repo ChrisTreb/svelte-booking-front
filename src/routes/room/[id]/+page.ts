@@ -3,6 +3,9 @@ import type { Room } from "../../../classes/Room";
 import { BACKEND_API_URL } from "../../../const/url";
 import { setRoomImg } from "../../../dao/RoomDao";
 
+export const ssr = false;
+export const csr = true;
+
 /** @type {import('./$types').PageLoad} */
 export async function load({ params }) {
 
@@ -16,5 +19,6 @@ export async function load({ params }) {
 		return { room };
 	} else {
         error(404, 'Not found');
-    }	
+    }
 }
+

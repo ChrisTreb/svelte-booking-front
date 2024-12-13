@@ -40,6 +40,8 @@ export const ALT_PLACES_IMG: string[] = [
 
 export const DEFAULT_ROOM_IMG: string = "https://images.pexels.com/photos/271619/pexels-photo-271619.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1";
 
+export const geocodingApiUrl = "https://api.opencagedata.com/geocode/v1/json?q=";
+
 /**
  * Get random element from specific Array
  * @param array

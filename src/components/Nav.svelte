@@ -158,7 +158,7 @@
 	}
 
 	#mask {
-		z-index: 150;
+		z-index: 5000;
 		opacity: 0;
 		background-color: black;
 		position: fixed;

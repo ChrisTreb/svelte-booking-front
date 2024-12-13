@@ -1,5 +1,6 @@
-import { BACKEND_URL, BACKEND_API_URL, getRandElFromArr, ALT_PLACES_IMG } from "../const/url";
+import { BACKEND_URL, BACKEND_API_URL, getRandElFromArr, ALT_PLACES_IMG, geocodingApiUrl } from "../const/url";
 import type { Place } from "../classes/Place";
+import { GEOCODING_API_KEY } from "../const/api_key";
 
 /**
  * Set place random image
@@ -145,6 +146,30 @@ export async function deletePlace(id : number) {
     console.log(resData);
     // Return response data  
     return resData.status;
+}
+
+/**
+ * Get place GPS coordinates
+ * @param room 
+ */
+export async function getPlaceCoordinates(placeId: number) {
+
+	const place = await getPlaceById(placeId);
+    let data;
+
+	if (place) {
+		const res: Response = await fetch(geocodingApiUrl 
+            + place.city + "+" 
+            + place.country 
+            + "&key=" 
+            + GEOCODING_API_KEY, {
+            method: 'GET'
+        });
+
+        data = await res.json();
+        console.log(data.results[0].geometry);
+        return data.results[0].geometry;
+	}
 }
 
 /**

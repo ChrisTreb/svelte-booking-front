@@ -3,28 +3,13 @@
 	import type { Room } from '../../../classes/Room';
 	import { getPlaceById } from '../../../dao/placeDao';
 	import { EMOJI_STAR } from '../../../const/emoji';
-	import { onMount } from 'svelte';
-	import L from 'leaflet';
-
+		
 	/** @type {import('./$types').PageData} */
 	export let data: any;
 
 	let room: Room = data.room;
-	let map: any;
+	let placeId: number = room.place_id;
 
-	function initMap() {
-		if (typeof window !== 'undefined') {
-			map = L.map('map').setView([51.505, -0.09], 13);
-			L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-				attribution: '&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a>',
-				subdomains: ['a', 'b', 'c']
-			}).addTo(map);
-		}
-	}
-
-	onMount(() => {
-		initMap();
-	})
 </script>
 
 <Nav />
@@ -63,7 +48,10 @@
 		</div>
 		<div class="col-md-4 col-sm-12 reservation-col">
 			<h2>The Map</h2>
-			<div id="map" style="width: 100%; height: 100%"></div>
+			{#await import('../../../components/Map.svelte') then { default: Map }}
+				<Map {placeId}/>
+				<div id="map" style="width: 100%; height: 100%"></div>
+			{/await}
 		</div>
 	</div>
 </div>
@@ -88,7 +76,8 @@
 
 	.place-img > h6,
 	.room-img > h6 {
-		width: 50px;
+		text-align: center;
+		width: 60px;
 		color: white;
 		font-weight: bold;
 		padding: 5px;
