@@ -167,7 +167,7 @@ export async function getPlaceCoordinates(placeId: number) {
         });
 
         data = await res.json();
-        console.log(data.results[0].geometry);
+        // console.log(data.results[0].geometry);
         return data.results[0].geometry;
 	}
 }

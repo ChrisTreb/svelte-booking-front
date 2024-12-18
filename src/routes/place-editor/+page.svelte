@@ -9,7 +9,7 @@
 	import Nav from '../../components/Nav.svelte';
 
 	let placeDisplayed: Place;
-	placeDisplayed = new Place(0, new Date(), '', '', '', '', '', '', '', 1, '');
+	placeDisplayed = new Place(0, new Date(), '', '', '', '', '', '', '', 1, 'data:image/jpg;base64,');
 	let promise: Place;
 	let placeId: string = '';
 	let modeEditor: string;
@@ -230,16 +230,7 @@
 					<textarea bind:value={placeDisplayed.image} class="form-control" id="image" rows="12" />
 				</div>
 				<div class="col-lg-6 col-md-12 preview-container">
-					{#if !/(http(s?)):\/\//i.test(placeDisplayed.image)}
-						<img
-							class="img-fluid"
-							src="data:image/jpg;base64, {placeDisplayed.image}"
-							alt="preview"
-							title="preview"
-						/>
-					{:else}
-						<img class="img-fluid" src={placeDisplayed.image} alt="preview" title="preview" />
-					{/if}
+					<img class="img-fluid" src={placeDisplayed.image} alt="preview" title="preview" />
 				</div>
 			</div>
 			<div class="row form-buttons">

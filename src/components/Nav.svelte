@@ -109,7 +109,7 @@
 	}
 
 	#btn-menu {
-		z-index: 100;
+		z-index: 150;
 		position: fixed;
 		top: 20px;
 		width: 50px;

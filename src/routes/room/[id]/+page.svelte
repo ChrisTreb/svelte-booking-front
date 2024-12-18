@@ -3,6 +3,7 @@
 	import type { Room } from '../../../classes/Room';
 	import { getPlaceById } from '../../../dao/placeDao';
 	import { EMOJI_STAR } from '../../../const/emoji';
+	import BtnPageTop from '../../../components/BtnPageTop.svelte';
 		
 	/** @type {import('./$types').PageData} */
 	export let data: any;
@@ -47,19 +48,20 @@
 			</div>
 		</div>
 		<div class="col-md-4 col-sm-12 reservation-col">
-			<h2>The Map</h2>
+			<h2>Map location</h2>
 			{#await import('../../../components/Map.svelte') then { default: Map }}
 				<Map {placeId}/>
-				<div id="map" style="width: 100%; height: 100%"></div>
+				<div id="map" style="width: 100%; height: 80vh; min-height: 80vh; z-index: 100;"></div>
 			{/await}
 		</div>
 	</div>
 </div>
+<BtnPageTop />
 
 <style>
 	.container {
 		margin-top: 80px;
-		min-height: 90vh;
+		min-height: 80vh;
 	}
 
 	/* Place*/
@@ -72,6 +74,15 @@
 		flex-direction: column;
 		justify-content: space-between;
 		margin-bottom: 20px;
+	}
+
+	h2 {
+		margin: 10px 0;
+		padding: 10px;
+		font-weight: bold;
+		font-size: 1.6em;
+		background-color: rgb(240, 223, 198);
+		border-radius: 5px;
 	}
 
 	.place-img > h6,
