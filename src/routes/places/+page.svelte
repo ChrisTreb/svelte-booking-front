@@ -6,6 +6,7 @@
 	import { getPlaceFormResults } from '../../dao/placeDao';
 	import Breadcrumb from '../../components/Breadcrumb.svelte';
 	import Nav from '../../components/Nav.svelte';
+	import PlacesPaginator from '../../components/PlacesPaginator.svelte';
 
 	/** @type {import('./$types').PageData} */
 	export let data;
@@ -56,9 +57,7 @@
 	<div id="places-container" class="row">
 		{#if places != null && places != undefined}
 			{#await places then places}
-				{#each places as place}
-					<PlaceCard {place} />
-				{/each}
+				<PlacesPaginator {places} itemsPerPage={6} />
 			{/await}
 		{:else}
 			<div class="loading-container">
