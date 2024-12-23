@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Nav from '../../../components/Nav.svelte';
 	import type { Room } from '../../../classes/Room';
-	import { getPlaceById } from '../../../dao/placeDao';
+	import { displayRatingStars, getPlaceById } from '../../../dao/placeDao';
 	import BtnPageTop from '../../../components/BtnPageTop.svelte';
 		
 	/** @type {import('./$types').PageData} */
@@ -15,11 +15,15 @@
 <Nav />
 <div class="container">
 	<div class="row">
+		<div id="booking" class="col-md-12 mt-3">
+			<p>Great choice, <b>"book now"</b> to confirm your destination &nbsp;&nbsp;<i class="fa-solid fa-arrow-right"></i></p>
+			<button id="btn-book" class="btn btn-primary"><i class="fa-solid fa-plane"></i> Book now</button>
+		</div>
 		<div class="col-md-4 col-sm-12 place-col">
 			<h2>Your destination</h2>
 			{#await getPlaceById(room.place_id) then place}
 				<div class="place-img" style="background-image: url('{place.image}');">
-					<h6 class="rating">{place.rating} <i class="fa-solid fa-star"></i></h6>
+					<h6 class="rating">{displayRatingStars(place.rating)}</h6>
 					<h5>{place.name}</h5>
 				</div>
 				<div class="place-info">
@@ -50,7 +54,7 @@
 			<h2>Map location</h2>
 			{#await import('../../../components/Map.svelte') then { default: Map }}
 				<Map {placeId}/>
-				<div id="map" style="width: 100%; height: 80vh; min-height: 80vh; z-index: 100;"></div>
+				<div id="map" style="width: 100%; height: 70vh; min-height: 70vh; z-index: 100;"></div>
 			{/await}
 		</div>
 	</div>
@@ -60,13 +64,24 @@
 <style>
 	.container {
 		margin-top: 80px;
-		min-height: 80vh;
+		min-height: 70vh;
+	}
+
+	#booking {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		border-radius: 5px;
+	}
+
+	#btn-book {
+		margin: 0;
 	}
 
 	/* Place*/
 	.place-img,
 	.room-img {
-		height: 40vh;
+		height: 30vh;
 		background-position: center;
 		background-size: cover;
 		display: flex;
@@ -79,7 +94,7 @@
 		margin: 10px 0;
 		padding: 10px;
 		font-weight: bold;
-		font-size: 1.6em;
+		font-size: 1.2em;
 		background-color: rgb(240, 223, 198);
 		border-radius: 5px;
 	}
@@ -87,8 +102,8 @@
 	.place-img > h6,
 	.room-img > h6 {
 		text-align: center;
-		width: 60px;
-		color: white;
+		width: 80px;
+		color: gold;
 		font-weight: bold;
 		padding: 5px;
 		margin: 5px;

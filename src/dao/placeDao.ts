@@ -173,6 +173,17 @@ export async function getPlaceCoordinates(placeId: number) {
 }
 
 /**
+ * Display rating stars
+ */
+export function displayRatingStars(rating: number) {
+    let stars: string = "";
+    for (let i = 0; i < rating; i++) {
+        stars += "★";
+    }
+    return stars;
+}
+
+/**
  * Validate place data
  */
 export function validatePlace(place: Place) {

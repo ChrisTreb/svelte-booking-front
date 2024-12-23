@@ -1,4 +1,5 @@
 <script>
+	import { displayRatingStars } from '../dao/placeDao';
 	import ButtonPlaceEdit from './ButtonPlaceEdit.svelte';
 
 	/** @type { any } */
@@ -10,7 +11,7 @@
 	<div class="card">
 		<ButtonPlaceEdit {place} />
         <div class="card-img" style="background-image: url('{place.image}');">
-            <h6 class="rating">{place.rating} <i class="fa-solid fa-star"></i></h6>
+            <h6 class="rating">{displayRatingStars(place.rating)}</h6>
             <h5 class="card-title">{place.name}</h5>
         </div>
 		<div class="card-body">
@@ -52,8 +53,8 @@
     }
 
     .rating {
-        width: 50px;
-        color: white;
+        width: 80px;
+        color: gold;
         font-weight: bold;
         padding: 5px;
         margin: 5px;

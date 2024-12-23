@@ -5,6 +5,7 @@
 	import { getPlaceRooms } from '../../../dao/RoomDao';
 	import RoomCard from '../../../components/RoomCard.svelte';
 	import Nav from '../../../components/Nav.svelte';
+	import { displayRatingStars } from '../../../dao/placeDao';
 	
 	/** @type {import('./$types').PageData} */
 	export let data: any;
@@ -34,7 +35,7 @@
 						<h5>City</h5>
 						<p>{data.place.city}</p>
 						<h5>Rating</h5>
-						<p>{data.place.rating} <i class="fa-solid fa-star"></i></p>
+						<p>{displayRatingStars(place.rating)}</p>
 					</div>
 				</div>
 				<h5>Address</h5>
