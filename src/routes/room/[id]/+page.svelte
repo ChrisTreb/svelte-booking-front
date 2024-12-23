@@ -2,7 +2,6 @@
 	import Nav from '../../../components/Nav.svelte';
 	import type { Room } from '../../../classes/Room';
 	import { getPlaceById } from '../../../dao/placeDao';
-	import { EMOJI_STAR } from '../../../const/emoji';
 	import BtnPageTop from '../../../components/BtnPageTop.svelte';
 		
 	/** @type {import('./$types').PageData} */
@@ -20,7 +19,7 @@
 			<h2>Your destination</h2>
 			{#await getPlaceById(room.place_id) then place}
 				<div class="place-img" style="background-image: url('{place.image}');">
-					<h6 class="rating">{place.rating} {EMOJI_STAR}</h6>
+					<h6 class="rating">{place.rating} <i class="fa-solid fa-star"></i></h6>
 					<h5>{place.name}</h5>
 				</div>
 				<div class="place-info">
