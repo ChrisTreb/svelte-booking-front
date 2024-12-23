@@ -13,7 +13,7 @@
         currentPage = page;
     };
 
-    let paginatedPlaces: Array<{ id: number; name: string; [key: string]: any }> = [];
+    let paginatedPlaces: Place[] = [];
 
     $: paginatedPlaces = places.slice(
         (currentPage - 1) * itemsPerPage,

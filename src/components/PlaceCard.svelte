@@ -1,18 +1,16 @@
 <script>
-	import { EMOJI_STAR } from '../const/emoji';
 	import ButtonPlaceEdit from './ButtonPlaceEdit.svelte';
 
 	/** @type { any } */
 	export let place;
 	/** @type {number} */
-	export let placeId = place.id;
 </script>
 
 <div class="col-card col-lg-4 col-md-6 col-sm-12">
 	<div class="card">
-		<ButtonPlaceEdit {placeId} />
+		<ButtonPlaceEdit {place} />
         <div class="card-img" style="background-image: url('{place.image}');">
-            <h6 class="rating">{place.rating} {EMOJI_STAR}</h6>
+            <h6 class="rating">{place.rating} <i class="fa-solid fa-star"></i></h6>
             <h5 class="card-title">{place.name}</h5>
         </div>
 		<div class="card-body">
