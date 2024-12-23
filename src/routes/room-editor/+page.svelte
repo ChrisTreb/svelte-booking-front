@@ -421,11 +421,13 @@
 			</div>
 		</div>
 	</div>
-	{#if getPlaceById(roomDisplayed.place_id) != null && getPlaceById(roomDisplayed.place_id) != undefined}   
-		<div id="toggle-info">
-			<button id="btn-toggle-info" class="btn" on:click={showInfo}><i class="fa-solid fa-arrow-up-right-from-square"></i></button>
-		</div>
-	{/if}
+	{#await getPlaceById(roomDisplayed.place_id) then associatedPlace}
+		{#if associatedPlace.id }
+			<div id="toggle-info">
+				<button id="btn-toggle-info" class="btn" on:click={showInfo}><i class="fa-solid fa-arrow-up-right-from-square"></i></button>
+			</div>
+		{/if}
+	{/await}
 </div>
 
 <style>
