@@ -387,7 +387,7 @@
 			{#if roomDisplayed.place_id > 0}
 				{#await getPlaceById(roomDisplayed.place_id) then place}
 					<div class="col-12 mb-2">
-						<div class="place-img mb-2" style="background-image: url('{ALT_PLACES_IMG[0]}');">
+						<div class="place-img mb-2" style="background-image: url('{place.image}');">
 							<h5 class="place-title">ID : {place.id} - {place.name}</h5>
 						</div>
 						<div class="place-body">
@@ -407,13 +407,30 @@
 					{#await getPlaceRooms(roomDisplayed.place_id) then rooms}
 						{#each rooms as room}
 							<div class="col-md-3 col-sm-12">
-								<div class="room-card-info">
-									<p>Id : {room.id}</p>
-									<p>Number : {room.room_number}</p>
-									<p>Price : {room.price_per_night} €</p>
-									<p>Type : {room.room_type}</p>
-									<p>Capacity : {room.guests_capacity} person(s)</p>
-								</div>
+								<table class="table room-card-info">
+									<tbody>
+										<tr>
+											<td class="td-label">Id</td>
+											<td>{room.id}</td>
+										</tr>
+										<tr>
+											<td class="td-label">Number</td>
+											<td>{room.room_number}</td>
+										</tr>
+										<tr>
+											<td class="td-label">Price</td>
+											<td>{room.price_per_night} €</td>
+										</tr>
+										<tr>
+											<td class="td-label">Type</td>
+											<td>{room.room_type}</td>
+										</tr>
+										<tr>
+											<td class="td-label">Capacity</td>
+											<td>{room.guests_capacity} person(s)</td>
+										</tr>
+									</tbody>
+								</table>
 							</div>
 						{/each}
 					{/await}
@@ -599,14 +616,20 @@
 	/* Room card info */
 	.room-card-info {
 		padding: 10px;
+		margin-bottom: 10px;
 		border: 1px solid rgb(151, 151, 151);
 		border-radius: 5px;
-		background-color: rgb(58, 58, 58);
 	}
 
-	.room-card-info > p {
-		color: white;
+	.room-card-info {
+		font-size: 12px;
 		margin: 5px;
+	}
+
+	.td-label {
+		background-color: rgb(43, 43, 43);
+		font-weight: bold;
+		color: white;
 	}
 
 	/* Media queries */
