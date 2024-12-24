@@ -51,11 +51,56 @@
 			</div>
 		</div>
 		<div class="col-md-4 col-sm-12 reservation-col">
-			<h2>Map location</h2>
-			{#await import('../../../components/Map.svelte') then { default: Map }}
-				<Map {placeId}/>
-				<div id="map" style="width: 100%; height: 70vh; min-height: 70vh; z-index: 100;"></div>
-			{/await}
+			<div class="map-container">
+				<h2>Map location</h2>
+				{#await import('../../../components/Map.svelte') then { default: Map }}
+					<Map {placeId}/>
+					<div id="map" style="width: 100%; height: 40vh; min-height: 40vh; z-index: 100;"></div>
+				{/await}
+			</div>
+			<div class="services-container">
+				<h2>Services</h2>
+				<div class="service">
+					<p class="service-icon"><i class="fa-solid fa-wifi"></i></p>
+					<p class="service-label">WIFI</p>
+				</div>
+				<div class="service">
+					<p class="service-icon"><i class="fa-solid fa-tv"></i></p>
+					<p class="service-label">TV HD</p>
+				</div>
+				<div class="service">
+					<p class="service-icon"><i class="fa-solid fa-person-swimming"></i></p>
+					<p class="service-label">Pool</p>
+				</div>
+				<div class="service">
+					<p class="service-icon"><i class="fa-solid fa-square-parking"></i></p>
+					<p class="service-label">Parking</p>
+				</div>
+				<div class="service">
+					<p class="service-icon"><i class="fa-solid fa-martini-glass-citrus"></i></p>
+					<p class="service-label">Bar</p>
+				</div>
+				<div class="service">
+					<p class="service-icon"><i class="fa-solid fa-mug-hot"></i></p>
+					<p class="service-label">Breakfast</p>
+				</div>
+				<div class="service">
+					<p class="service-icon"><i class="fa-solid fa-utensils"></i></p>
+					<p class="service-label">Restaurant</p>
+				</div>
+				<div class="service">
+					<p class="service-icon"><i class="fa-solid fa-vault"></i></p>
+					<p class="service-label">Vault</p>
+				</div>
+				<div class="service">
+					<p class="service-icon"><i class="fa-solid fa-dog"></i></p>
+					<p class="service-label">Pet</p>
+				</div>
+				<div class="service">
+					<p class="service-icon"><i class="fa-solid fa-phone"></i></p>
+					<p class="service-label">Phone</p>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>
@@ -64,7 +109,7 @@
 <style>
 	.container {
 		margin-top: 80px;
-		min-height: 70vh;
+		min-height: 80vh;
 	}
 
 	#booking {
@@ -91,6 +136,7 @@
 	}
 
 	h2 {
+		width: 100%;
 		margin: 10px 0;
 		padding: 10px;
 		font-weight: bold;
@@ -121,5 +167,35 @@
 
 	p {
 		margin-bottom: 5px;
+	}
+
+	/* Services */
+	.services-container {
+		margin-top: 10px;
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-around;
+	}
+
+	.service {
+		width: 70px;
+		height: 70px;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		background-color: #0B5ED7;
+		color: white;
+		border-radius: 5px;
+		padding: 5px;
+		margin: 5px;
+	}
+
+	.service-icon {
+		font-size: 1.5em;
+	}
+
+	.service-label {
+		font-weight: bold;
+		font-size: 0.8em;
 	}
 </style>
