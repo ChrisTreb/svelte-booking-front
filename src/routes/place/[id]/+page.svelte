@@ -6,6 +6,7 @@
 	import RoomCard from '../../../components/RoomCard.svelte';
 	import Nav from '../../../components/Nav.svelte';
 	import { displayRatingStars } from '../../../dao/placeDao';
+	import Services from '../../../components/Services.svelte';
 	
 	/** @type {import('./$types').PageData} */
 	export let data: any;
@@ -27,25 +28,19 @@
 				<h1>{data.place.name}</h1>
 				<div class="row">
 					<div class="col-lg-8 col-md-12 img-container">
+						<p class="rating">{displayRatingStars(place.rating)}</p>
 						<img class="img-fluid img-place" src={data.place.image} alt="place" title={data.place.name} />
 					</div>
 					<div class="col-lg-4 col-md-12">
-						<h5>Country</h5>
-						<p>{data.place.country}</p>
-						<h5>City</h5>
-						<p>{data.place.city}</p>
-						<h5>Rating</h5>
-						<p>{displayRatingStars(place.rating)}</p>
+						<p><i class="fa-solid fa-flag"></i> {data.place.country}</p>
+						<p><i class="fa-solid fa-city"></i> {data.place.city}</p>
+						<p><i class="fa-solid fa-address-book"></i> {data.place.address}</p>
+						<p><i class="fa-solid fa-phone"></i> {data.place.phone_number}</p>
+						<p><i class="fa-solid fa-envelope"></i> {data.place.email}</p>
 					</div>
 				</div>
-				<h5>Address</h5>
-				<p>{data.place.address}</p>
-				<h5>Phone number</h5>
-				<p>{data.place.phone_number}</p>
-				<h5>Email</h5>
-				<p>{data.place.email}</p>
-				<h4>Description</h4>
 				<p>{data.place.description}</p>
+				<Services />
 			</div>
 		</div>
 
@@ -93,6 +88,20 @@
 
 	.img-container {
 		margin-bottom: 20px;
+	}
+
+	.img-place {
+		border-radius: 5px;
+	}
+
+	.rating {
+		position: absolute;
+		text-align: center;
+		width: 80px;
+		padding: 5px 10px;
+		background-color: rgba(51, 51, 51, 0.7);
+		border-radius: 5px;
+		color: gold;
 	}
 
 	h1 {
