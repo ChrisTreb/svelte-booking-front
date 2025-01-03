@@ -1,1 +1,1 @@
-export const GEOCODING_API_KEY = "";
+export const GEOCODING_API_KEY = "c77dc7c07e8b4560873399d4dbfe1872";
