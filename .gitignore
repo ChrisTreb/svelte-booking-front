@@ -21,4 +21,4 @@ vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 
 # Api keys
-./src/const/api_key.ts
+src/const/api_key.ts
